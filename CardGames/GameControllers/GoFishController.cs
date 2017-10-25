@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.GameControllers
 {
-    class GoFishController
+    public class GoFishController : Game
     {
     }
 }
