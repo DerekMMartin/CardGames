@@ -10,9 +10,9 @@ namespace CardGames.GameControllers
 {
     public class GoFishController : Game
     {
-        public GoFishController(int players, List<string> playerNames)
+        public GoFishController(int numOfPlayers, List<string> playerNames)
         {
-            for (int i = 0; i < players; i++)
+            for (int i = 0; i < numOfPlayers; i++)
             {
                 GoFishPlayer p = new GoFishPlayer();
 
@@ -25,6 +25,24 @@ namespace CardGames.GameControllers
             }
         }
 
+        /// <summary>
+        /// Deals each player 7 cards to add to their starting hand
+        /// </summary>
+        public void SetupHands()
+        {
+            foreach (GoFishPlayer gp in Players)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    gp.Hand.Add(Deck.Draw());
+                }
+            }
+        }
+
+        private void StartGame()
+        {
+            SetupHands();
+        }
 
     }
 }
