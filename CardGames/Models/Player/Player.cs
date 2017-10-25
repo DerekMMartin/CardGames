@@ -9,6 +9,7 @@ namespace CardGames.Models.Player
     public abstract class Player
     {
         public string Name { get; set; }
+        public bool IsAi { get; set; }
         public List<Card> Hand { get; set; }
 
     }
