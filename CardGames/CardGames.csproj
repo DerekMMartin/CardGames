@@ -63,6 +63,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\Suit.cs" />
+    <Compile Include="GameControllers\Game.cs" />
     <Compile Include="GameControllers\GoFishController.cs" />
     <Compile Include="GameControllers\WarController.cs" />
     <Compile Include="MainWindow.xaml.cs">
