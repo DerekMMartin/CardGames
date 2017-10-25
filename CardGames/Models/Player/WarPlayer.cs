@@ -8,5 +8,9 @@ namespace CardGames.Models.Player
 {
     public class WarPlayer : Player
     {
+
+        public List<Card> DrawPile { get; set; }
+        public List<Card> DiscardPile { get; set; }
+
     }
 }
