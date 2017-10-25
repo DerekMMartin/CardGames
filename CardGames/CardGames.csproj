@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Player\BlackJackPlayer.cs" />
     <Compile Include="Models\Player\GoFishPlayer.cs" />
     <Compile Include="Models\Player\Player.cs" />
