@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.Models.Player
 {
-    public class PokerPlayer : Player
+    public class PokerPlayer : BlackjackPlayer
     {
         public int Money { get; set; }
     }
