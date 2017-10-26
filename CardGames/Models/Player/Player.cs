@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.Models.Player
 {
-    public abstract class Player
+    public abstract class BlackjackPlayer
     {
         public string Name { get; set; }
         public bool IsAi { get; set; }

@@ -9,7 +9,14 @@ namespace CardGames.Models
 {
     public class Deck
     {
+        /// <summary>
+        /// The current cards in the deck
+        /// </summary>
         public List<Card> Cards { get; set; }
+
+        /// <summary>
+        /// The cards that have already been drawn
+        /// </summary>
         public List<Card> Drawn { get; set; }
 
         /// <summary>
@@ -32,12 +39,20 @@ namespace CardGames.Models
         /// <summary>
         /// Grabs the top card of the deck and temporarly removes it from the deck so it cannot be drawn again
         /// </summary>
-        /// <returns>The top card of the deck</returns>
+        /// <returns>The top card of the deck or null if the deck is empty</returns>
         public Card Draw()
         {
-            Card drawnCard = Cards.First();
-            Cards.Remove(drawnCard);
-            Drawn.Add(drawnCard);
+            Card drawnCard;
+            if(Cards.Count > 0)
+            {
+                drawnCard = Cards.First();
+                Cards.Remove(drawnCard);
+                Drawn.Add(drawnCard);
+            }
+            else
+            {
+                drawnCard = null;
+            }
             return drawnCard;
         }
 
