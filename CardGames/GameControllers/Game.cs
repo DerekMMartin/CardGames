@@ -10,7 +10,7 @@ namespace CardGames.GameControllers
 {
     public abstract class Game
     {
-        public List<BlackjackPlayer> Players { get; set; }
+        public List<Player> Players { get; set; }
         public Deck Deck { get; set; }
         public string FileExtension { get; set; }
 
