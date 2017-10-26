@@ -59,6 +59,9 @@
     <Compile Include="UserControls\BlackJackStartMenu.xaml.cs">
       <DependentUpon>BlackJackStartMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\WarSetupControl.xaml.cs">
+      <DependentUpon>WarSetupControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +80,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\BlackJackStartMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\WarSetupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
