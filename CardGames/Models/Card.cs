@@ -20,7 +20,7 @@ namespace CardGames.Models
 
         public Card(int faceValue, Suit faceSuit)
         {
-            FaceValue = faceValue;
+            FaceValue = (CardValue)faceValue;
             FaceSuit = faceSuit;
         }
 
