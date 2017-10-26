@@ -24,5 +24,30 @@ namespace CardGames.UserControls
         {
             InitializeComponent();
         }
+
+        private void PlayerCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PlayerNames.Children.Clear();
+            for(int i = 0; i < (int)PlayerCount.SelectedItem; i++)
+            {
+                StackPanel s = new StackPanel()
+                {
+                    Orientation = Orientation.Horizontal,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(5, 5, 5, 5)
+                };
+                Label l = new Label()
+                {
+                    Content = $"Player {i}"
+                };
+                TextBox t = new TextBox()
+                {
+                    MinWidth = 100
+                };
+                s.Children.Add(l);
+                s.Children.Add(t);
+                PlayerNames.Children.Add(s);
+            }
+        }
     }
 }

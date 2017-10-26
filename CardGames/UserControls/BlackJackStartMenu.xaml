@@ -8,15 +8,21 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Background="AliceBlue">
         <Label HorizontalContentAlignment="Center">Blackjack</Label>
-        <ComboBox x:Name="PlayerCount" >
-            <ComboBoxItem>1</ComboBoxItem>
-            <ComboBoxItem>2</ComboBoxItem>
-            <ComboBoxItem>3</ComboBoxItem>
-            <ComboBoxItem>4</ComboBoxItem>
-            <ComboBoxItem>5</ComboBoxItem>
-        </ComboBox>
-        
-        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label>Players</Label>
+            <ComboBox x:Name="PlayerCount" SelectionChanged="PlayerCount_SelectionChanged" >
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+                <ComboBoxItem>5</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel x:Name="PlayerNames">
+            
+        </StackPanel>
+
+
         <Button x:Name="BackButton">Back</Button>
     </StackPanel>
 </UserControl>
