@@ -64,7 +64,7 @@ namespace CardGames.Models
 
             ClearDrawnPile();
             
-            for (int i = 0; i < 52; i++)
+            for (int i = 0; i < Cards.Count();)
             {
                 Random rand = new Random();
                 int randomNum = rand.Next(Cards.Count);
@@ -83,7 +83,7 @@ namespace CardGames.Models
         }
 
         /// <summary>
-        /// Takes all cards in the draw pile and puts the back into the deck
+        /// Takes all cards in the dranw pile and puts the back into the deck
         /// </summary>
         private  void ClearDrawnPile()
         {

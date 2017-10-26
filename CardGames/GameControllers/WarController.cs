@@ -36,7 +36,41 @@ namespace CardGames.GameControllers
 
         public void Draw()
         {
+            Card card1 = Player1.Draw();
+            Card card2 = Player2.Draw();
 
+            
+
+        }
+
+        private void CheckCards(Card card1, Card card2)
+        {
+            if ((int)card1.FaceValue == (int)card2.FaceValue)
+            {
+                CheckCards(Player1.War(), Player2.War());
+            }
+            else if ((int)card1.FaceValue > (int)card2.FaceValue || (int)card1.FaceValue == 1)
+            {
+                ClearBoard(Player1);
+            }
+            else
+            {
+                ClearBoard(Player2);
+            }
+        }
+
+        private void ClearBoard(WarPlayer player)
+        {
+            player.DiscardPile.Add(Player1.FlippedCard);
+            player.DiscardPile.Add(Player2.FlippedCard);
+            foreach (Card card in Player1.CardsAtRisk)
+            {
+                player.DiscardPile.Add(card);
+            }
+            foreach (Card card in Player2.CardsAtRisk)
+            {
+                player.DiscardPile.Add(card);
+            }
         }
 
     }

@@ -28,7 +28,7 @@ namespace CardGames.UserControls
         private void PlayerCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             PlayerNames.Children.Clear();
-            for(int i = 0; i < (int)PlayerCount.SelectedItem; i++)
+            for(int i = 0; i < PlayerCount.SelectedIndex+1; i++)
             {
                 StackPanel s = new StackPanel()
                 {
@@ -38,12 +38,15 @@ namespace CardGames.UserControls
                 };
                 Label l = new Label()
                 {
-                    Content = $"Player {i}"
+                    Content = $"Player {i+1}"
                 };
                 TextBox t = new TextBox()
                 {
-                    MinWidth = 100
+                    MinWidth = 100,
+                    
                 };
+                VisualState vs = new VisualState();
+                vs.SetValue(FrameworkElement.NameProperty, $"Player{i + 1}");
                 s.Children.Add(l);
                 s.Children.Add(t);
                 PlayerNames.Children.Add(s);
