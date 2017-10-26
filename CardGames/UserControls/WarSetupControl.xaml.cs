@@ -21,20 +21,28 @@ namespace CardGames.UserControls
     public partial class WarSetupControl : UserControl
     {
         public MainWindow Window { get; set; }
+        public bool IsPvP { get; set; }
         public WarSetupControl(MainWindow window)
         {
             Window = window;
+            IsPvP = false;
             InitializeComponent();
         }
 
         private void PVPButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Player2TextBox.IsEnabled = true;
+            IsPvP = true;
+            PVPButton.IsEnabled = false;
+            PVCButton.IsEnabled = true;
         }
 
         private void PVCButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Player2TextBox.IsEnabled = false;
+            IsPvP = false;
+            PVPButton.IsEnabled = true;
+            PVCButton.IsEnabled = false;
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)

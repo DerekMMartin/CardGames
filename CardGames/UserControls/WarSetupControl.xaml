@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Background="AliceBlue">
+        <Label Content="War"
+               FontSize="24"
+               HorizontalContentAlignment="Center"/>
         <StackPanel Orientation="Horizontal"
                     Margin="10"
                     HorizontalAlignment="Center">
@@ -34,7 +37,8 @@
                     Content="Vs. Computer"
                     Margin="10"
                     Width="100"
-                    Click="PVCButton_Click"/>
+                    Click="PVCButton_Click"
+                    IsEnabled="False"/>
         </StackPanel>
         <Button Name="PlayButton"
                 Content="Play"
