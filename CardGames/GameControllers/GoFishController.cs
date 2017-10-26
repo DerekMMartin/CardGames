@@ -25,10 +25,15 @@ namespace CardGames.GameControllers
             }
         }
 
+        private void StartGame()
+        {
+            SetupHands();
+        }
+
         /// <summary>
         /// Deals each player 7 cards to add to their starting hand
         /// </summary>
-        public void SetupHands()
+        private void SetupHands()
         {
             foreach (GoFishPlayer gp in Players)
             {
@@ -39,10 +44,32 @@ namespace CardGames.GameControllers
             }
         }
 
-        private void StartGame()
+        private bool AskForCard(GoFishPlayer requestedPlayer)
         {
-            SetupHands();
+            //requestedPlayer.Hand.Where()
+
+            return true;
         }
+
+        private bool ValidatePair(Card card1, Card Card2)
+        {
+            bool validPair = false;
+
+            if (card1.FaceValue == Card2.FaceValue)
+            {
+                validPair = true;
+            }
+            
+            return validPair;
+        }
+        
+
+        public override void SaveGame()
+        {
+            throw new NotImplementedException();
+        }
+
+
 
     }
 }
