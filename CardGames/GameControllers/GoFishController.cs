@@ -28,9 +28,16 @@ namespace CardGames.GameControllers
 
         private void StartGame()
         {
-            SetupHands();
-            //Ask player for card
-            //CheckIfPlayerHasCard(Players)
+            //SetupHands();
+            //Ask player for card (((maybe later on in the gui setup regex so that they can only choose cards in their hand)))
+            //Check for card in that players hand -- CheckIfPlayerHasCard();
+                //if true return a list of cards to put into the requester -- ReturnRequestedCards();
+                //else GOFISH BABYYY
+            
+            //Player pulls card from deck
+                //if card == requested card tell other player card face + value and player goes again
+
+            //Loop until player gets 4 of a kind
         }
 
         /// <summary>
@@ -74,7 +81,7 @@ namespace CardGames.GameControllers
 
             return requestedCards;
         }
-
+        
         private bool ValidatePair(Card card1, Card Card2)
         {
             bool validPair = false;
