@@ -1,4 +1,5 @@
-﻿using CardGames.Models;
+﻿using CardGames.Enums;
+using CardGames.Models;
 using CardGames.Models.Player;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,8 @@ namespace CardGames.GameControllers
         private void StartGame()
         {
             SetupHands();
+            //Ask player for card
+            //CheckIfPlayerHasCard(Players)
         }
 
         /// <summary>
@@ -44,11 +47,32 @@ namespace CardGames.GameControllers
             }
         }
 
-        private bool AskForCard(GoFishPlayer requestedPlayer, Card c)
+        private bool CheckIfPlayerHasCard(GoFishPlayer player, CardValue value)
         {
-            //requestedPlayer.Hand.Where(card => card.FaceValue == );
+            bool hasCard = false;
 
-            return true;
+            foreach (Card c in player.Hand)
+            {
+                if (c.FaceValue == value)
+                {
+                    hasCard = true;
+                }
+            }
+
+            return hasCard;
+        }
+        
+        /// <summary>
+        /// Looks through requested player's hand to find all cards that match the requested value
+        /// </summary>
+        /// <param name="requestedPlayer">Player being asked if they have a card</param>
+        /// <param name="requestedValue">Value being looked for</param>
+        /// <returns></returns>
+        private List<Card> ReturnRequestedCards(GoFishPlayer requestedPlayer, CardValue requestedValue)
+        {
+            List<Card> requestedCards = (List<Card>)requestedPlayer.Hand.Where(card => card.FaceValue == requestedValue);
+
+            return requestedCards;
         }
 
         private bool ValidatePair(Card card1, Card Card2)
