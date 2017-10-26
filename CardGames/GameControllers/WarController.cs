@@ -80,7 +80,7 @@ namespace CardGames.GameControllers
             }
         }
 
-        private void DrawPlayerCard(WarPlayer player)
+        private Card DrawPlayerCard(WarPlayer player)
         {
             Card card = player.Draw();
             if(card == null)
@@ -95,6 +95,7 @@ namespace CardGames.GameControllers
                     player.Shuffle();
                 }
             }
+            return card;
         }
 
     }
