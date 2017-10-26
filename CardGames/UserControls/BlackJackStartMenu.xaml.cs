@@ -26,6 +26,7 @@ namespace CardGames.UserControls
         {
             Window = window;
             InitializeComponent();
+            PlayerCount.SelectedIndex = 0;
         }
 
         private void PlayerCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,7 +62,7 @@ namespace CardGames.UserControls
             {
                 StackPanel s = (StackPanel)PlayerNames.Children[i];
                 TextBox t = (TextBox)s.Children[1];
-                names[i] = t.Text;
+                names[i] = t.Text==""?$"Player {i+1}":t.Text;
             }
 
 

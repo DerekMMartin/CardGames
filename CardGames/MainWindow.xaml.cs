@@ -29,7 +29,7 @@ namespace CardGames
         private void BlackJackButton_Click(object sender, RoutedEventArgs e)
         {
             Root.Children.Clear();
-            Root.Children.Add(new BlackJackStartMenu());
+            Root.Children.Add(new BlackJackStartMenu(this));
         }
     }
 }
