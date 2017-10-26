@@ -24,5 +24,10 @@ namespace CardGames
         {
             InitializeComponent();
         }
+
+        private void BlackJackButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

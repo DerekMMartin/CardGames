@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CardGames"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="Card Games" Height="350" Width="525">
+    <StackPanel>
+        <Button Name="BlackJackButton" Content="Black Jack"
+                Margin="50, 35, 50, 15"
+                FontSize="25"
+                Click="BlackJackButton_Click"/>
+
+        <Button Name="GoFishButton" Content="Go Fish"
+                Margin="50, 15, 50, 15"
+                FontSize="25"/>
+
+        <Button Name="WarButton" Content="War"
+                Margin="50, 15, 50, 15"
+                FontSize="25"/>
         
-    </Grid>
+
+    </StackPanel>
 </Window>
