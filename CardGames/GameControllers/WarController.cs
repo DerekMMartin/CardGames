@@ -36,10 +36,9 @@ namespace CardGames.GameControllers
 
         public void Draw()
         {
-            Card card1 = Player1.Draw();
-            Card card2 = Player2.Draw();
 
-            
+            CheckCards(Player1.Draw(), Player2.Draw);
+            CheckWin(); 
 
         }
 
@@ -57,6 +56,7 @@ namespace CardGames.GameControllers
             {
                 ClearBoard(Player2);
             }
+
         }
 
         private void ClearBoard(WarPlayer player)
@@ -71,6 +71,11 @@ namespace CardGames.GameControllers
             {
                 player.DiscardPile.Add(card);
             }
+        }
+
+        private void CheckWin()
+        {
+
         }
 
     }
