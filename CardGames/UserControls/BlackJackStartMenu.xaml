@@ -22,7 +22,7 @@
             
         </StackPanel>
 
-
+        <Button Click="Start_Click">Start</Button>
         <Button x:Name="BackButton">Back</Button>
     </StackPanel>
 </UserControl>
