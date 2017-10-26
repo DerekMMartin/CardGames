@@ -6,19 +6,27 @@
         xmlns:local="clr-namespace:CardGames"
         mc:Ignorable="d"
         Title="Card Games" Height="350" Width="525">
-    <StackPanel x:Name="Root">
+    <StackPanel x:Name="Root" Background="#19535F">
         <Button x:Name="BlackJackButton" Content="Black Jack"
                 Margin="50, 35, 50, 15"
-                FontSize="25"
-                Click="BlackJackButton_Click"/>
+                FontSize="25" Background="#05668D"
+                Click="BlackJackButton_Click"
+                BorderBrush="Black"
+                BorderThickness="3px"/>
 
         <Button x:Name="GoFishButton" Content="Go Fish"
                 Margin="50, 15, 50, 15"
-                FontSize="25"/>
+                FontSize="25" Background="#05668D"
+                Click="GoFishButton_Click"
+                BorderBrush="Black"
+                BorderThickness="3px"/>
 
         <Button x:Name="WarButton" Content="War"
                 Margin="50, 15, 50, 15"
-                FontSize="25"/>
+                FontSize="25" Background="#05668D"
+                Click="WarButton_Click"
+                BorderBrush="Black"
+                BorderThickness="3px"/>
         
 
     </StackPanel>

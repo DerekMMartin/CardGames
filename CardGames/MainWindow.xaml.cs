@@ -29,5 +29,15 @@ namespace CardGames
         {
 
         }
+
+        private void GoFishButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
