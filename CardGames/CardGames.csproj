@@ -62,6 +62,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\CardValue.cs" />
     <Compile Include="Enums\Suit.cs" />
     <Compile Include="GameControllers\Game.cs" />
     <Compile Include="GameControllers\GoFishController.cs" />

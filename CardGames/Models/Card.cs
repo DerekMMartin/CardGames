@@ -9,7 +9,7 @@ namespace CardGames.Models
 {
     public class Card
     {
-        public int FaceValue { get; set; }
+        public CardValue FaceValue { get; set; }
         public Suit FaceSuit { get; set; }
 
 
