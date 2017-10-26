@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CardGames"
         mc:Ignorable="d"
         Title="Card Games" Height="350" Width="525">
-    <StackPanel>
+    <StackPanel Name="Root">
         <Button Name="BlackJackButton" Content="Black Jack"
                 Margin="50, 35, 50, 15"
                 FontSize="25"
