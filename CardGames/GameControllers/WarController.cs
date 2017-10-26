@@ -71,12 +71,12 @@ namespace CardGames.GameControllers
             foreach (Card card in Player1.CardsAtRisk)
             {
                 player.DiscardPile.Add(card);
-                CardsAtRisk.Remove(card);
+                player.CardsAtRisk.Remove(card);
             }
             foreach (Card card in Player2.CardsAtRisk)
             {
                 player.DiscardPile.Add(card);
-                CardsAtRisk.Remove(card);
+                player.CardsAtRisk.Remove(card);
             }
         }
 

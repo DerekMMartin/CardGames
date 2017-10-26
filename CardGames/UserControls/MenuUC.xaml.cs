@@ -41,7 +41,8 @@ namespace CardGames.UserControls
 
         private void WarButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Window.Root.Children.Clear();
+            Window.Root.Children.Add(new WarSetupControl(Window));
         }
     }
 }

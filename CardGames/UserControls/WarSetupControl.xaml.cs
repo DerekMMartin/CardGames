@@ -20,8 +20,10 @@ namespace CardGames.UserControls
     /// </summary>
     public partial class WarSetupControl : UserControl
     {
-        public WarSetupControl()
+        public MainWindow Window { get; set; }
+        public WarSetupControl(MainWindow window)
         {
+            Window = window;
             InitializeComponent();
         }
 
