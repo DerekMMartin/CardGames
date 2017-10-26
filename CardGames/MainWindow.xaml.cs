@@ -24,22 +24,9 @@ namespace CardGames
         public MainWindow()
         {
             InitializeComponent();
+            MenuUC menu = new MenuUC(this);
+            Root.Children.Add(menu);
         }
 
-        private void BlackJackButton_Click(object sender, RoutedEventArgs e)
-        {
-            Root.Children.Clear();
-            Root.Children.Add(new BlackJackStartMenu());
-        }
-
-        private void GoFishButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void WarButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
