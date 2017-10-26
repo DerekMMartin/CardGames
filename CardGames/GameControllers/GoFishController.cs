@@ -44,9 +44,9 @@ namespace CardGames.GameControllers
             }
         }
 
-        private bool AskForCard(GoFishPlayer requestedPlayer)
+        private bool AskForCard(GoFishPlayer requestedPlayer, Card c)
         {
-            //requestedPlayer.Hand.Where()
+            //requestedPlayer.Hand.Where(card => card.FaceValue == );
 
             return true;
         }
