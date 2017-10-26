@@ -56,7 +56,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GameControllers\BlackJackController.cs" />
     <Compile Include="UserControls\BlackJackStartMenu.xaml.cs">
       <DependentUpon>BlackJackStartMenu.xaml</DependentUpon>
     </Compile>
@@ -114,8 +113,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardGames.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,8 @@ namespace CardGames
 
         private void BlackJackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Root.Children.Clear();
+            Root.Children.Add(new BlackJackStartMenu());
         }
     }
 }
