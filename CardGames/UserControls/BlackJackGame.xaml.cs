@@ -1,5 +1,4 @@
-﻿using CardGames.UserControls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CardGames
+namespace CardGames.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BlackJackGame.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BlackJackGame : UserControl
     {
-        public MainWindow()
+        public BlackJackGame(MainWindow w,string[] names)
         {
             InitializeComponent();
-            MenuUC menu = new MenuUC(this);
-            Root.Children.Add(menu);
         }
-
     }
 }

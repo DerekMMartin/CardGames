@@ -12,8 +12,9 @@ namespace CardGames.GameControllers
     {
         public BlackJackController(string[] names)
         {
+            FileExtension = ".bjsav";
             Deck = new Deck();
-            Players = new List<BlackjackPlayer>();
+            Players = new List<Player>();
             Players.Add(new BlackJackPlayer("House") { IsAi = true });
             for(int i = 0; i < names.Count(); i++)
             {

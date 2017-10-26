@@ -71,16 +71,16 @@ namespace CardGames.GameControllers
             foreach (Card card in Player1.CardsAtRisk)
             {
                 player.DiscardPile.Add(card);
-                CardsAtRisk.Remove(card);
+                player.CardsAtRisk.Remove(card);
             }
             foreach (Card card in Player2.CardsAtRisk)
             {
                 player.DiscardPile.Add(card);
-                CardsAtRisk.Remove(card);
+                player.CardsAtRisk.Remove(card);
             }
         }
 
-        private void DrawPlayerCard(WarPlayer player)
+        private Card DrawPlayerCard(WarPlayer player)
         {
             Card card = player.Draw();
             if(card == null)
@@ -95,6 +95,7 @@ namespace CardGames.GameControllers
                     player.Shuffle();
                 }
             }
+            return card;
         }
 
     }
