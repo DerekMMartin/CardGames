@@ -18,7 +18,7 @@ namespace CardGames.Models.Player
         {
             if(DrawPile.Count == 0)
             {
-                Shuffle();
+                return null;
             }
             Card card = DrawPile.First();
             FlippedCard = card;
@@ -30,7 +30,7 @@ namespace CardGames.Models.Player
         {
             if(DrawPile.Count == 0)
             {
-                Shuffle();
+                return null;
             }
             CardsAtRisk.Add(FlippedCard);
             CardsAtRisk.Add(DrawPile.First());
@@ -38,7 +38,7 @@ namespace CardGames.Models.Player
             return Draw();
         }
 
-        private void Shuffle()
+        public void Shuffle()
         {
             Random rand = new Random();
             for (int i = 0; i < DiscardPile.Count();)
