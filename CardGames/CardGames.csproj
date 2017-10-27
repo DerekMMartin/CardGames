@@ -59,6 +59,9 @@
     <Compile Include="UserControls\BlackJackGame.xaml.cs">
       <DependentUpon>BlackJackGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\BlackJackPlayerDisplay.xaml.cs">
+      <DependentUpon>BlackJackPlayerDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\BlackJackStartMenu.xaml.cs">
       <DependentUpon>BlackJackStartMenu.xaml</DependentUpon>
     </Compile>
@@ -83,6 +86,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\BlackJackGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BlackJackPlayerDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

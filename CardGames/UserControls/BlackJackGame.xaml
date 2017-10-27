@@ -7,6 +7,70 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="AliceBlue">
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="playerlist" Orientation="Horizontal"></StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Label>Hand</Label>
+                <StackPanel x:Name="hand"></StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label>Split</Label>
+                <StackPanel x:Name="splithand"></StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <Label>Dealer</Label>
+                <StackPanel x:Name="dealer"></StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel >
+                <Label x:Name="cplayername">Player1</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Bank:</Label>
+                    <Label x:Name="bank" MinWidth="40">20</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Current Bet:</Label>
+                    <Label x:Name="cplayerbet" MinWidth="25">10</Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel x:Name="betsgrid" Grid.Column="1" Visibility="Visible">
+                <Label>Bets</Label>
+                <StackPanel>
+                    <Button x:Name="Bet1" Margin="5 2" Click="Bet_Click">$1</Button>
+                    <Button x:Name="Bet5" Margin="5 3" Click="Bet_Click">$5</Button>
+                    <Button x:Name="Bet10" Margin="5 2" Click="Bet_Click">$10</Button>
+                </StackPanel>
+            </StackPanel>
+            <Grid x:Name="actiongrid" Grid.Column="2" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Hit" Margin="5" Click="Hit_Click" FontSize="10">Hit</Button>
+                <Button x:Name="Stand" Margin="5" Click="Stand_Click" Grid.Column="1" FontSize="10">Stand</Button>
+                <Button x:Name="DoubleDown" Margin="5" Click="DoubleDown_Click" Grid.Row="1" FontSize="10"><TextBlock>Double<LineBreak/>Down</TextBlock></Button>
+                <Button x:Name="Split" Margin="5" Click="Split_Click" Grid.Row="1" Grid.Column="1" FontSize="10">Split</Button>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
