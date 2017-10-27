@@ -12,18 +12,14 @@ namespace CardGames.GameControllers
     {
         public WarPlayer Player1 { get; set; }
         public WarPlayer Player2 { get; set; }
-        public bool IsPvP { get; set; }
         public bool IsWon { get; set; }
         public WarPlayer LosingPlayer { get; set; }
 
-        public WarController(string Player1Name)
+        public WarController()
         {
-
-        }
-
-        public WarController(string Player1Name, string Player2Name)
-        {
-
+            Player1 = new WarPlayer();
+            Player2 = new WarPlayer();
+            DealCards();
         }
 
         public void DealCards()
@@ -33,6 +29,8 @@ namespace CardGames.GameControllers
             {
                 Player1.DrawPile.Add(deck.Draw());
                 Player2.DrawPile.Add(deck.Draw());
+                Player1.Shuffle();
+                Player2.Shuffle();
             }
         }
 
@@ -49,7 +47,7 @@ namespace CardGames.GameControllers
 
         private void CheckCards(Card card1, Card card2)
         {
-            if ((int)card1.FaceValue == (int)card2.FaceValue)
+            if (card1.FaceValue == card2.FaceValue)
             {
                 CheckCards(Player1.War(), Player2.War());
             }
@@ -71,13 +69,13 @@ namespace CardGames.GameControllers
             foreach (Card card in Player1.CardsAtRisk)
             {
                 player.DiscardPile.Add(card);
-                player.CardsAtRisk.Remove(card);
             }
             foreach (Card card in Player2.CardsAtRisk)
             {
                 player.DiscardPile.Add(card);
-                player.CardsAtRisk.Remove(card);
             }
+            Player1.CardsAtRisk.Clear();
+            Player2.CardsAtRisk.Clear();
         }
 
         private Card DrawPlayerCard(WarPlayer player)
@@ -93,6 +91,7 @@ namespace CardGames.GameControllers
                 else
                 {
                     player.Shuffle();
+                    card = DrawPlayerCard(player);
                 }
             }
             return card;

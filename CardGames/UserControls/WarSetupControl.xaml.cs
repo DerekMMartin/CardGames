@@ -47,7 +47,28 @@ namespace CardGames.UserControls
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            String player1 = Player1TextBox.Text;
+            String player2 = Player2TextBox.Text;
 
+            if(string.IsNullOrWhiteSpace(player1))
+            {
+                player1 = "Player 1";
+            }
+            if(string.IsNullOrWhiteSpace(player2) && IsPvP)
+            {
+                player2 = "Player 2";
+            }
+
+            Window.Root.Children.Clear();
+            if(IsPvP)
+            {
+                Window.Root.Children.Add(new WarGame(player1, player2));
+            }
+            else
+            {
+                Window.Root.Children.Add(new WarGame(player1));
+            }
+            
         }
     }
 }
