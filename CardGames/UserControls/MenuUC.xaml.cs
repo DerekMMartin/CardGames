@@ -36,7 +36,8 @@ namespace CardGames.UserControls
 
         private void GoFishButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Window.Root.Children.Clear();
+            Window.Root.Children.Add(new GoFishSetupMenu(Window));
         }
 
         private void WarButton_Click(object sender, RoutedEventArgs e)
