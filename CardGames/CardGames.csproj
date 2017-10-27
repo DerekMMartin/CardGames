@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameControllers\WarController.cs" />
     <Compile Include="UserControls\BlackJackGame.xaml.cs">
       <DependentUpon>BlackJackGame.xaml</DependentUpon>
     </Compile>
@@ -65,8 +66,17 @@
     <Compile Include="UserControls\BlackJackStartMenu.xaml.cs">
       <DependentUpon>BlackJackStartMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\GoFishSetupMenu.xaml.cs">
+      <DependentUpon>GoFishSetupMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WarGame.xaml.cs">
+      <DependentUpon>WarGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WarSetupControl.xaml.cs">
+      <DependentUpon>WarSetupControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -97,9 +107,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\GoFishSetupMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\MenuUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\WarGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\WarSetupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,6 @@ namespace CardGames.Enums
         TEN=10,
         JACK=11,
         QUEEN=12,
-        KING=12
+        KING=13
     }
 }

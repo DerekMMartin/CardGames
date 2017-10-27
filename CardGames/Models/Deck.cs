@@ -24,6 +24,8 @@ namespace CardGames.Models
         /// </summary>
         public Deck()
         {
+            Cards = new List<Card>();
+            Drawn = new List<Card>();
             foreach (Suit suit in Enum.GetValues(typeof(Suit)))
             {
                 for (int i = 1; i < 14; i++)
@@ -32,8 +34,7 @@ namespace CardGames.Models
                     Cards.Add(newCard);
                 }
             }
-
-
+            Shuffle();
         }
 
         /// <summary>
@@ -46,8 +47,9 @@ namespace CardGames.Models
             if(Cards.Count > 0)
             {
                 drawnCard = Cards.First();
-                Cards.Remove(drawnCard);
                 Drawn.Add(drawnCard);
+                Cards.Remove(drawnCard);
+                
             }
             else
             {
@@ -63,8 +65,9 @@ namespace CardGames.Models
         {
 
             ClearDrawnPile();
-            
-            for (int i = 0; i < Cards.Count();)
+
+            int size = Cards.Count();
+            for (int i = 0; i < size; i++)
             {
                 Random rand = new Random();
                 int randomNum = rand.Next(Cards.Count);
@@ -83,15 +86,15 @@ namespace CardGames.Models
         }
 
         /// <summary>
-        /// Takes all cards in the dranw pile and puts the back into the deck
+        /// Takes all cards in the dranw pile and puts it back into the deck
         /// </summary>
         private  void ClearDrawnPile()
         {
             foreach (Card card in Drawn)
             {
                 Cards.Add(card);
-                Cards.Remove(card);
             }
+            Drawn.Clear();
         }
     }
 }
