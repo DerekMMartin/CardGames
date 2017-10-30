@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardGames.Models.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,11 @@ namespace CardGames.UserControls
     public partial class GoFishSetupMenu : UserControl
     {
         public MainWindow Window { get; set; }
+
+        public List<GoFishPlayer> Players { get; set; }
         public GoFishSetupMenu(MainWindow window)
         {
+            Players = new List<GoFishPlayer>();
                 Window = window;
                 InitializeComponent();
         }
@@ -64,7 +68,7 @@ namespace CardGames.UserControls
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
             Window.Root.Children.Clear();
-            Window.Root.Children.Add(new GoFishGame(Window));
+            Window.Root.Children.Add(new GoFishGame(Window, Players));
         }
     }
 }
