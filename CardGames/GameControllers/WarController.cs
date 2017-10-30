@@ -14,6 +14,7 @@ namespace CardGames.GameControllers
         public WarPlayer Player2 { get; set; }
         public bool IsWon { get; set; }
         public WarPlayer LosingPlayer { get; set; }
+        public bool IsWar { get; set; }
 
         public WarController()
         {
@@ -25,19 +26,24 @@ namespace CardGames.GameControllers
         public void DealCards()
         {
             Deck deck = new Deck();
-            for (int i = 0; i < deck.Cards.Count();  i += 2)
+            for (int i = 0; i < deck.Cards.Count();)
             {
                 Player1.DrawPile.Add(deck.Draw());
                 Player2.DrawPile.Add(deck.Draw());
             }
             Player1.Shuffle();
             Player2.Shuffle();
+            Player1.RemainingCards = Player1.DrawPile.Count();
+            Player1.NumDiscarded = Player1.DiscardPile.Count();
+            Player2.RemainingCards = Player2.DrawPile.Count();
+            Player2.NumDiscarded = Player2.DiscardPile.Count();
         }
 
         public void Draw()
         {
             Card card1 = DrawPlayerCard(Player1);
             Card card2 = DrawPlayerCard(Player2);
+            IsWar = false;
             if (!IsWon)
             {
                 CheckCards(card1, card2);
@@ -49,7 +55,7 @@ namespace CardGames.GameControllers
         {
             if (card1.FaceValue == card2.FaceValue)
             {
-                CheckCards(Player1.War(), Player2.War());
+                IsWar = true;
             }
             else if ((int)card1.FaceValue > (int)card2.FaceValue || (int)card1.FaceValue == 1)
             {

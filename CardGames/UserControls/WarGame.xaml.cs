@@ -1,4 +1,5 @@
 ﻿using CardGames.GameControllers;
+using CardGames.Models.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,8 @@ namespace CardGames.UserControls
     {
 
         public bool IsPvP { get; set; }
-        public WarController controller { get; set; }
+        public WarController Controller { get; set; }
+
         public WarGame()
         {
             InitializeComponent();
@@ -35,7 +37,8 @@ namespace CardGames.UserControls
             InitializeComponent();
             Player1Label.Content = player1;
             Player2Label.Content = "Computer";
-            controller = new WarController();
+            Controller = new WarController();
+            UpdateLables();
         }
 
         public WarGame(String player1, String player2)
@@ -44,17 +47,28 @@ namespace CardGames.UserControls
             InitializeComponent();
             Player1Label.Content = player1;
             Player2Label.Content = player2;
-            controller = new WarController();
+            Controller = new WarController();
+            UpdateLables();
         }
 
+        private void UpdateLables()
+        {
+            Player1DrawLabel.Content = Controller.Player1.RemainingCards;
+            Player2DrawLabel.Content = Controller.Player2.RemainingCards;
+            Player1DiscardLabel.Content = Controller.Player1.NumDiscarded;
+            Player2DiscardLabel.Content = Controller.Player2.NumDiscarded;
+            CardsAtRiskLabel.Content = (Controller.Player1.NumAtRisk + Controller.Player2.NumAtRisk);
+        }
 
         private void DrawButton_Click(object sender, RoutedEventArgs e)
         {
-            controller.Draw();
-            string card1 = controller.Player1.FlippedCard.FaceValue.ToString() + controller.Player1.FlippedCard.FaceSuit.ToString();
-            string card2 = controller.Player2.FlippedCard.FaceValue.ToString() + controller.Player2.FlippedCard.FaceSuit.ToString();
+            Controller.Draw();
+            string card1 = Controller.Player1.FlippedCard.FaceValue.ToString() + Controller.Player1.FlippedCard.FaceSuit.ToString();
+            string card2 = Controller.Player2.FlippedCard.FaceValue.ToString() + Controller.Player2.FlippedCard.FaceSuit.ToString();
             Player1Card.Content = card1;
             Player2Card.Content = card2;
+            UpdateLables();
         }
+
     }
 }
