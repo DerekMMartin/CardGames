@@ -1,4 +1,5 @@
-﻿using CardGames.Models.Player;
+﻿using CardGames.GameControllers;
+using CardGames.Models.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +24,23 @@ namespace CardGames.UserControls
     {
         public MainWindow Window { get; set; }
 
-        public List<GoFishPlayer> Players { get; set; }
+        public List<string> PlayerNames { get; set; }
+
+        public List<TextBox> TextBoxes { get; set; }
+
+        public int NumPlayers { get; set; }
         public GoFishSetupMenu(MainWindow window)
         {
-            Players = new List<GoFishPlayer>();
                 Window = window;
                 InitializeComponent();
         }
 
         private void PlayerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            PlayerNames = new List<string>();
+            TextBoxes = new List<TextBox>();
             PlayerNameArea.Children.Clear();
+            NumPlayers = PlayerComboBox.SelectedIndex + 2;
             for (int i = 0; i < PlayerComboBox.SelectedIndex + 2; i++)
             {
                 StackPanel s = new StackPanel();
@@ -42,7 +49,7 @@ namespace CardGames.UserControls
                 Label l = new Label();
                 TextBox t = new TextBox();
                 t.Width = 100;
-                t.Name = $"Player{i + 1}TextBox";
+                TextBoxes.Add(t);
                 l.Content = $"Player {i + 1}";
                 s.Children.Add(l);
                 s.Children.Add(t);
@@ -67,8 +74,18 @@ namespace CardGames.UserControls
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
+            for (int i = 0; i < NumPlayers; i++)
+            {
+                string text = TextBoxes[i].Text;
+                if(string.IsNullOrEmpty(text))
+                {
+                    text = $"Player {i + 1}";
+                }
+                PlayerNames.Add(text);
+            }
+            GoFishController g = new GoFishController(NumPlayers, PlayerNames);
             Window.Root.Children.Clear();
-            Window.Root.Children.Add(new GoFishGame(Window, Players));
+            Window.Root.Children.Add(new GoFishGame(Window, g));
         }
     }
 }
