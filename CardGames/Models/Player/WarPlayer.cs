@@ -13,16 +13,20 @@ namespace CardGames.Models.Player
         public List<Card> DiscardPile { get; set; }
         public Card FlippedCard { get; set; }
         public List<Card> CardsAtRisk { get; set; }
-
+        public int RemainingCards { get; set; }
+        public int NumDiscarded { get; set; }
+        public int NumAtRisk { get; set; }
         public WarPlayer()
         {
             DrawPile = new List<Card>();
             DiscardPile = new List<Card>();
             CardsAtRisk = new List<Card>();
+            NumAtRisk = 0;
         }
 
         public Card Draw()
         {
+            NumAtRisk = 0;
             if(DrawPile.Count == 0)
             {
                 return null;
@@ -30,10 +34,13 @@ namespace CardGames.Models.Player
             Card card = DrawPile.First();
             FlippedCard = card;
             DrawPile.Remove(card);
+            RemainingCards = DrawPile.Count();
+            NumDiscarded = DiscardPile.Count();
+            NumAtRisk += 1;
             return card;
         }
 
-        public Card War()
+        public void War()
         {
             if(DrawPile.Count <= 1)
             {
@@ -42,7 +49,13 @@ namespace CardGames.Models.Player
             CardsAtRisk.Add(FlippedCard);
             CardsAtRisk.Add(DrawPile.First());
             DrawPile.Remove(DrawPile.First());
-            return Draw();
+            CardsAtRisk.Add(DrawPile.First());
+            DrawPile.Remove(DrawPile.First());
+            CardsAtRisk.Add(DrawPile.First());
+            DrawPile.Remove(DrawPile.First());
+            RemainingCards = DrawPile.Count();
+            NumDiscarded = DiscardPile.Count();
+            NumAtRisk += 3;
         }
 
         public void Shuffle()
