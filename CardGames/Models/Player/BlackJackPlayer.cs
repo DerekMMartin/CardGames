@@ -8,7 +8,7 @@ namespace CardGames.Models.Player
 {
     public class BlackJackPlayer : Player
     {
-        public int Money { get; set; }
+        public int Bank { get; set; }
         public int Bet { get; set; }
         public List<Card> SplitHand { get; set; }
         public BlackJackPlayer(string name)

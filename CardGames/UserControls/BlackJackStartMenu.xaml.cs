@@ -65,8 +65,7 @@ namespace CardGames.UserControls
                 names[i] = t.Text==""?$"Player {i+1}":t.Text;
             }
 
-
-
+            
 
             Window.Root.Children.Clear();
             Window.Root.Children.Add(new BlackJackGame(Window,names));
