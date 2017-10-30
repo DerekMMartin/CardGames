@@ -13,7 +13,7 @@ namespace CardGames.GameControllers
     {
         public GoFishController(int numOfPlayers, List<string> playerNames)
         {
-            Deck d = new Deck();
+            GDeck = new Deck();
 
             Players = new List<Player>();
 
@@ -28,7 +28,7 @@ namespace CardGames.GameControllers
 
                 for (int j = 0;  j < 7;  j++)
                 {
-                    p.Hand.Add(Deck.Draw());
+                    p.Hand.Add(GDeck.Draw());
                 }
                 
                 Players.Add(p);
