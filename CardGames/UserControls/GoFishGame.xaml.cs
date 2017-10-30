@@ -1,4 +1,5 @@
-﻿using CardGames.Models.Player;
+﻿using CardGames.GameControllers;
+using CardGames.Models.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,10 @@ namespace CardGames.UserControls
     {
 
         public MainWindow Window { get; set; }
-        public List<GoFishPlayer> Players { get; set; }
-        public GoFishGame(MainWindow window, List<GoFishPlayer> players)
+        public GoFishController Game { get; set; }
+        public GoFishGame(MainWindow window, GoFishController game)
         {
-            Players = players;
+            Game = game;
             Window = window;
             InitializeComponent();
         }

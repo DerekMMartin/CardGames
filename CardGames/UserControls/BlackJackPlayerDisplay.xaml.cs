@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CardGames.Models;
+using CardGames.Models.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +22,31 @@ namespace CardGames.UserControls
     /// </summary>
     public partial class BlackJackPlayerDisplay : UserControl
     {
-        public Label PlayerName { get; set; }
-        public Label Bank { get; set; }
-        public StackPanel Hand { get; set; }
-        public BlackJackPlayerDisplay()
+        public BlackJackPlayer Player { get; set; }
+        public Label Hand { get; set; }
+        public Label SplitHand { get; set; }
+        public BlackJackPlayerDisplay(BlackJackPlayer p)
         {
             InitializeComponent();
-            PlayerName = name;
-            Bank = bank;
+            Player = p;
             Hand = hand;
+            SplitHand = splitHand;
+            name.Content = Player.Name;
+            bank.DataContext = Player;
+            bank.Content = new Binding("Bank");
+        }
+        public void UpdateHands()
+        {
+            Hand.Content = "";
+            SplitHand.Content = "";
+            foreach (Card c in Player.Hand)
+            {
+                Hand.Content += c.Print() + " ";
+            }
+            foreach (Card c in Player.SplitHand)
+            {
+                SplitHand.Content += c.Print() + " ";
+            }
         }
     }
 }
