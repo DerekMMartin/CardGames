@@ -7,14 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <ComboBox x:Name="PlayerComboBox" SelectionChanged="PlayerComboBox_SelectionChanged">
+        <Button x:Name="NewGameButton" Content="New Game"
+                Click="NewGameButton_Click"/>
+
+        <Button x:Name="LoadGameButton" Content="Load Game"
+                Click="LoadGameButton_Click"/>
+
+        <ComboBox x:Name="PlayerComboBox" SelectionChanged="PlayerComboBox_SelectionChanged"
+                  Visibility="Hidden">
             <ComboBoxItem>2</ComboBoxItem>
             <ComboBoxItem>3</ComboBoxItem>
             <ComboBoxItem>4</ComboBoxItem>
         </ComboBox>
-        <StackPanel x:Name="PlayerNameArea"
-                    >
-            <Label Content="hi"/>
+        <StackPanel x:Name="PlayerNameArea">
         </StackPanel>
+        <Button x:Name="EnterButton" Content="Enter"
+                Click="EnterButton_Click" Visibility="Hidden"/>
     </StackPanel>
 </UserControl>
