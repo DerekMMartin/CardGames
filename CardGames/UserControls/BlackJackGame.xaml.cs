@@ -1,4 +1,5 @@
 ﻿using CardGames.GameControllers;
+using CardGames.Models.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,35 +24,19 @@ namespace CardGames.UserControls
     {
         public MainWindow Window { get; set; }
         public BlackJackController Controller { get; set; }
-
-        //public StackPanel PlayerList { get; set; }
-        //public StackPanel Dealer { get; set; }
-        //public Label CPlayerName { get; set; }
-        //public Label Bank { get; set; }
-        //public Label CPlayerBet { get; set; }
-        //public StackPanel BetsPanel { get; set; }
-        //public Grid ActionGrid { get; set; }
+        public int CurrentPlayer { get; set; }
 
         public BlackJackGame(MainWindow w, string[] names)
         {
             Window = w;
             InitializeComponent();
-
-            //PlayerList = playerlist;
-            //Dealer = dealer;
-            //CPlayerName = cplayername;
-            //Bank = bank;
-            //CPlayerBet = cplayerbet;
-            //BetsPanel = betsgrid;
-            //ActionGrid = actiongrid;
-
             Controller = new BlackJackController(Window, this, names);
 
         }
 
         private void Bet_Click(object sender, RoutedEventArgs e)
         {
-
+            //(BlackJackPlayer)Controller.Players[CurrentPlayer].
         }
 
         private void Hit_Click(object sender, RoutedEventArgs e)
