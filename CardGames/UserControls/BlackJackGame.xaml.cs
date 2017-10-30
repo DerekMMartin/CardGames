@@ -36,7 +36,7 @@ namespace CardGames.UserControls
 
         private void Bet_Click(object sender, RoutedEventArgs e)
         {
-            //(BlackJackPlayer)Controller.Players[CurrentPlayer].
+            //((BlackJackPlayer)Controller.Players[0]).Bet = 
         }
 
         private void Hit_Click(object sender, RoutedEventArgs e)

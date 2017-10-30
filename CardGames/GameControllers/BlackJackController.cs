@@ -24,7 +24,7 @@ namespace CardGames.GameControllers
             Window = m;
             GameWindow = w;
             FileExtension = ".bjsav";
-            Deck = new Deck();
+            GDeck = new Deck();
             House=new BlackJackPlayer("House") { IsAi = true };
             Players = new List<Player>();
             for(int i = 0; i < names.Count(); i++)
