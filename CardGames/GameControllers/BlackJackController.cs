@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CardGames.GameControllers
 {
@@ -13,15 +14,19 @@ namespace CardGames.GameControllers
     {
         public MainWindow Window { get; set; }
         public BlackJackGame GameWindow{ get; set; }
+        public BlackJackPlayer House { get; set; }
         //add list of player UCs
         //bind them to players
         //update players and UC status each turn
         //Rotate UC appearance in StackPanel
-        public BlackJackController(string[] names)
+        public BlackJackController(MainWindow m,BlackJackGame w,string[] names)
         {
+            Window = m;
+            GameWindow = w;
             FileExtension = ".bjsav";
             Deck = new Deck();
-            Players.Add(new BlackJackPlayer("House") { IsAi = true });
+            House=new BlackJackPlayer("House") { IsAi = true };
+            Players = new List<Player>();
             for(int i = 0; i < names.Count(); i++)
             {
                 Players.Add(new BlackJackPlayer(names[i]));
@@ -32,19 +37,11 @@ namespace CardGames.GameControllers
 
         private void StartGame()
         {
-            while (Hand());
-        }
-
-        private bool Hand()
-        {
-            GetPlayerBets();
-
-
-
-
-
-
-            return true;
+            for(int i = 1; i < Players.Count; i++)
+            {
+                GameWindow.playerlist.Children.Add(new BlackJackPlayerDisplay((BlackJackPlayer)Players[i]));
+            }
+            GameWindow.cplayerdisplay.Children.Add(new BlackJackPlayerDisplay((BlackJackPlayer)Players[0]));
         }
 
         private void GetPlayerBets()
