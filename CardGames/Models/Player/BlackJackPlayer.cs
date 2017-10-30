@@ -14,7 +14,7 @@ namespace CardGames.Models.Player
         public BlackJackPlayer(string name)
         {
             Name = name;
-            Money = 20;
+            Bank = 20;
             Hand = new List<Card>();
             SplitHand = new List<Card>();
         }
