@@ -28,5 +28,9 @@ namespace CardGames.Models
         {
             return $"{FaceValue} of {FaceSuit}";
         }
+        public string Print()
+        {
+            return FaceValue + " " + FaceSuit.ToString().Substring(0, 1);
+        }
     }
 }

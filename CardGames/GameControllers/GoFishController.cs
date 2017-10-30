@@ -13,6 +13,10 @@ namespace CardGames.GameControllers
     {
         public GoFishController(int numOfPlayers, List<string> playerNames)
         {
+            GDeck = new Deck();
+
+            Players = new List<Player>();
+
             for (int i = 0; i < numOfPlayers; i++)
             {
                 GoFishPlayer p = new GoFishPlayer();
@@ -22,38 +26,31 @@ namespace CardGames.GameControllers
 
                 p.Hand = new List<Card>();
 
+                for (int j = 0;  j < 7;  j++)
+                {
+                    p.Hand.Add(GDeck.Draw());
+                }
+                
                 Players.Add(p);
             }
+ 
         }
 
         private void StartGame()
         {
             //SetupHands();
-            //Ask player for card (((maybe later on in the gui setup regex so that they can only choose cards in their hand)))
+            //Ask player for card 
             //Check for card in that players hand -- CheckIfPlayerHasCard();
-                //if true return a list of cards to put into the requester -- ReturnRequestedCards();
-                //else GOFISH BABYYY
-            
+            //if true return a list of cards to put into the requester -- ReturnRequestedCards();
+            //else GOFISH BABYYY
+
             //Player pulls card from deck
-                //if card == requested card tell other player card face + value and player goes again
+            //if card == requested card tell other player card face + value and player goes again
 
             //Loop until player gets 4 of a kind
+            
         }
-
-        /// <summary>
-        /// Deals each player 7 cards to add to their starting hand
-        /// </summary>
-        private void SetupHands()
-        {
-            foreach (GoFishPlayer gp in Players)
-            {
-                for (int i = 0; i < 7; i++)
-                {
-                    gp.Hand.Add(Deck.Draw());
-                }
-            }
-        }
-
+        
         private bool CheckIfPlayerHasCard(GoFishPlayer player, CardValue value)
         {
             bool hasCard = false;
@@ -94,6 +91,35 @@ namespace CardGames.GameControllers
             return validPair;
         }
         
+        /// <summary>
+        /// Returns list of CardValues that exist in the player's hand
+        /// </summary>
+        /// <param name="p">Player being evaluated</param>
+        /// <returns></returns>
+        private List<CardValue> GetRequestableCardValues(GoFishPlayer p)
+        {
+            List<CardValue> CardVals = new List<CardValue>();
+
+            foreach (Card c in p.Hand)
+            {
+                if (CardVals.Count != 0 && !CardVals.Contains(c.FaceValue))
+                {
+                    CardVals.Add(c.FaceValue);
+                }
+            }
+            
+            return CardVals;
+        }
+
+        private List<Card> AddCardsToHand(GoFishPlayer p, List<Card> cardsToBeAdded)
+        {
+            foreach (Card c in cardsToBeAdded)
+            {
+                p.Hand.Add(c);
+            }
+
+            return p.Hand;
+        }
 
         public override void SaveGame()
         {

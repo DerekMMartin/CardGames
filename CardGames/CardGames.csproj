@@ -66,6 +66,9 @@
     <Compile Include="UserControls\BlackJackStartMenu.xaml.cs">
       <DependentUpon>BlackJackStartMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\GoFishGame.xaml.cs">
+      <DependentUpon>GoFishGame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GoFishSetupMenu.xaml.cs">
       <DependentUpon>GoFishSetupMenu.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\BlackJackStartMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GoFishGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

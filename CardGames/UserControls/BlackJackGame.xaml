@@ -19,17 +19,16 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel>
+            <StackPanel x:Name="cplayerdisplay">
                 <Label>Hand</Label>
-                <StackPanel x:Name="hand"></StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="1">
+            <!--<StackPanel Grid.Column="1">
                 <Label>Split</Label>
                 <StackPanel x:Name="splithand"></StackPanel>
-            </StackPanel>
+            </StackPanel>-->
             <StackPanel Grid.Column="2">
                 <Label>Dealer</Label>
-                <StackPanel x:Name="dealer"></StackPanel>
+                <Label x:Name="dealer"></Label>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2" >

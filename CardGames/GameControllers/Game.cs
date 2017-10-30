@@ -11,7 +11,7 @@ namespace CardGames.GameControllers
     public abstract class Game
     {
         public List<Player> Players { get; set; }
-        public Deck Deck { get; set; }
+        public Deck GDeck { get; set; }
         public string FileExtension { get; set; }
 
         public abstract void SaveGame();
