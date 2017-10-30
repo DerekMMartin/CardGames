@@ -48,7 +48,7 @@ namespace CardGames.Models
             {
                 drawnCard = Cards.First();
                 Drawn.Add(drawnCard);
-                Cards.Remove(drawnCard);
+                Cards.RemoveAt(0);
                 
             }
             else
@@ -73,20 +73,19 @@ namespace CardGames.Models
                 int randomNum = rand.Next(Cards.Count);
                 Card card = Cards[randomNum];
                 Drawn.Add(card);
-                Cards.Remove(card);
+                Cards.RemoveAt(randomNum);
             }
 
             foreach (Card card in Drawn)
             {
                 Cards.Add(card);
             }
-
-            ClearDrawnPile();
+            Drawn.Clear();
 
         }
 
         /// <summary>
-        /// Takes all cards in the dranw pile and puts it back into the deck
+        /// Takes all cards in the drawn pile and puts it back into the deck
         /// </summary>
         private  void ClearDrawnPile()
         {

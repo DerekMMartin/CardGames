@@ -29,9 +29,9 @@ namespace CardGames.GameControllers
             {
                 Player1.DrawPile.Add(deck.Draw());
                 Player2.DrawPile.Add(deck.Draw());
-                Player1.Shuffle();
-                Player2.Shuffle();
             }
+            Player1.Shuffle();
+            Player2.Shuffle();
         }
 
         public void Draw()
