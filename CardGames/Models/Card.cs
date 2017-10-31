@@ -30,7 +30,26 @@ namespace CardGames.Models
         }
         public string Print()
         {
-            return (int)FaceValue  + "" + FaceSuit.ToString().Substring(0, 1);
+            string cardNumber = "";
+            switch ((int)FaceValue)
+            {
+                case 1:
+                    cardNumber = "A";
+                    break;
+                case 11:
+                    cardNumber = "J";
+                    break;
+                case 12:
+                    cardNumber = "Q";
+                    break;
+                case 13:
+                    cardNumber = "K";
+                    break;
+                default:
+                    cardNumber = (int)FaceValue +"";
+                    break;
+            }
+            return cardNumber + FaceSuit.ToString().Substring(0, 1);
         }
     }
 }
