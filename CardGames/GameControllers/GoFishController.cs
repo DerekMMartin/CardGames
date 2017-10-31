@@ -17,6 +17,8 @@ namespace CardGames.GameControllers
 
             Players = new List<Player>();
 
+            FileExtension = "GoF";
+
             for (int i = 0; i < numOfPlayers; i++)
             {
                 GoFishPlayer p = new GoFishPlayer();

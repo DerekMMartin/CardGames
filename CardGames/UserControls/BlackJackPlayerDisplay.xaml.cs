@@ -32,8 +32,10 @@ namespace CardGames.UserControls
             Hand = hand;
             SplitHand = splitHand;
             name.Content = Player.Name;
+
             bank.DataContext = Player;
-            bank.Content = new Binding("Bank");
+            bank.SetBinding(Label.ContentProperty, new Binding("Bank"));
+
         }
         public void UpdateHands()
         {
