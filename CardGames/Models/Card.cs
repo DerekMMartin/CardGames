@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.Models
 {
+    [Serializable]
     public class Card
     {
         public CardValue FaceValue { get; set; }

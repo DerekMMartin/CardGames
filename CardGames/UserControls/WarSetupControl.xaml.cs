@@ -1,12 +1,16 @@
-﻿using System;
+﻿using CardGames.GameControllers;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -18,7 +22,7 @@ namespace CardGames.UserControls
     /// <summary>
     /// Interaction logic for WarSetupControl.xaml
     /// </summary>
-    public partial class WarSetupControl : UserControl
+    public partial class WarSetupControl : System.Windows.Controls.UserControl
     {
         public MainWindow Window { get; set; }
         public bool IsPvP { get; set; }
@@ -62,13 +66,35 @@ namespace CardGames.UserControls
             Window.Root.Children.Clear();
             if(IsPvP)
             {
-                Window.Root.Children.Add(new WarGame(player1, player2));
+                Window.Root.Children.Add(new WarGame(player1, player2, Window));
             }
             else
             {
-                Window.Root.Children.Add(new WarGame(player1));
+                Window.Root.Children.Add(new WarGame(player1, Window));
             }
             
+        }
+
+        private void LoadGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            WarController loaded= null;
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "War Games|*.war";
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                Stream stream = null;
+                if((stream = ofd.OpenFile()) != null)
+                {
+                    BinaryFormatter deserializer = new BinaryFormatter();
+                    loaded = (WarController)deserializer.Deserialize(stream);
+                    stream.Close();
+                }
+            }
+            if (loaded != null)
+            {
+                Window.Root.Children.Clear();
+                Window.Root.Children.Add(new WarGame(loaded, Window));
+            }
         }
     }
 }

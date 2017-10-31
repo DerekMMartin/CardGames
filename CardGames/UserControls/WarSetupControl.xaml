@@ -45,5 +45,10 @@
                 Width="100"
                 Margin="10"
                 Click="PlayButton_Click"/>
+        <Button Name="LoadGameButton"
+                Content="Load Game"
+                Width="100"
+                Margin="10"
+                Click="LoadGameButton_Click"/>
     </StackPanel>
 </UserControl>

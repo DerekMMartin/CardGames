@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.GameControllers
 {
+    [Serializable]
     public class WarController : Game
     {
         public WarPlayer Player1 { get; set; }

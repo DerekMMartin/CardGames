@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.Models.Player
 {
+    [Serializable]
     public class WarPlayer : Player
     {
 
