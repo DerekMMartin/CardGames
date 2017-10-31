@@ -15,8 +15,8 @@ namespace CardGames.GameControllers
     {
         public List<Player> Players { get; set; }
         public Deck GDeck { get; set; }
-        public virtual string FileExtension { get; private set; }
-        public virtual string GameName { get; private set; }
+        public virtual string FileExtension { get; protected set; }
+        public virtual string GameName { get; protected set; }
 
         public void SaveGame()
         {

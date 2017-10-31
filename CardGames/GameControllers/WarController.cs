@@ -15,8 +15,8 @@ namespace CardGames.GameControllers
         public bool IsWon { get; set; }
         public WarPlayer LosingPlayer { get; set; }
         public bool IsWar { get; set; }
-        public string FileExtension { get; private set; } = "war";
-        public string GameName { get; private set; } = "War";
+        public string FileExtension { get; protected set; } = "war";
+        public string GameName { get; protected set; } = "War";
 
         public WarController(string player1, string player2)
         {
