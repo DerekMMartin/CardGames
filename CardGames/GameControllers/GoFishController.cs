@@ -13,7 +13,9 @@ namespace CardGames.GameControllers
     {
         public GoFishController(int numOfPlayers, List<string> playerNames)
         {
-            
+
+            GameName = "Go Fish";
+
             GDeck = new Deck();
 
             Players = new List<Player>();
@@ -39,21 +41,7 @@ namespace CardGames.GameControllers
  
         }
 
-        private void StartGame()
-        {
-            //SetupHands();
-            //Ask player for card 
-            //Check for card in that players hand -- CheckIfPlayerHasCard();
-            //if true return a list of cards to put into the requester -- ReturnRequestedCards();
-            //else GOFISH BABYYY
-
-            //Player pulls card from deck
-            //if card == requested card tell other player card face + value and player goes again
-
-            //Loop until player gets 4 of a kind
-        }
-        
-        private bool CheckIfPlayerHasCard(GoFishPlayer player, CardValue value)
+        public bool CheckIfPlayerHasCard(GoFishPlayer player, CardValue value)
         {
             bool hasCard = false;
 
@@ -67,38 +55,38 @@ namespace CardGames.GameControllers
 
             return hasCard;
         }
-        
+
         /// <summary>
         /// Looks through requested player's hand to find all cards that match the requested value
         /// </summary>
         /// <param name="requestedPlayer">Player being asked if they have a card</param>
         /// <param name="requestedValue">Value being looked for</param>
         /// <returns></returns>
-        private List<Card> ReturnRequestedCards(GoFishPlayer requestedPlayer, CardValue requestedValue)
+        public List<Card> ReturnRequestedCards(GoFishPlayer requestedPlayer, CardValue requestedValue)
         {
             List<Card> requestedCards = (List<Card>)requestedPlayer.Hand.Where(card => card.FaceValue == requestedValue);
 
             return requestedCards;
         }
-        
-        private bool ValidatePair(Card card1, Card Card2)
+
+        public bool ValidatePair(List<Card> handOfCards)
         {
             bool validPair = false;
 
-            if (card1.FaceValue == Card2.FaceValue)
+            foreach (Card c in handOfCards)
             {
-                validPair = true;
+                //handOfCards.Where(c)
             }
             
             return validPair;
         }
-        
+
         /// <summary>
         /// Returns list of CardValues that exist in the player's hand
         /// </summary>
         /// <param name="p">Player being evaluated</param>
         /// <returns></returns>
-        private List<CardValue> GetRequestableCardValues(GoFishPlayer p)
+        public List<CardValue> GetRequestableCardValues(GoFishPlayer p)
         {
             List<CardValue> CardVals = new List<CardValue>();
 
@@ -113,7 +101,7 @@ namespace CardGames.GameControllers
             return CardVals;
         }
 
-        private List<Card> AddCardsToHand(GoFishPlayer p, List<Card> cardsToBeAdded)
+        public List<Card> AddCardsToHand(GoFishPlayer p, List<Card> cardsToBeAdded)
         {
             foreach (Card c in cardsToBeAdded)
             {
@@ -122,13 +110,6 @@ namespace CardGames.GameControllers
 
             return p.Hand;
         }
-
-        public override void SaveGame()
-        {
-            throw new NotImplementedException();
-        }
-
-
 
     }
 }
