@@ -1,4 +1,5 @@
 ﻿using CardGames.GameControllers;
+using CardGames.Models;
 using CardGames.Models.Player;
 using System;
 using System.Collections.Generic;
@@ -58,7 +59,9 @@ namespace CardGames.UserControls
                 item.Hand.Add(Controller.GDeck.Draw());
             }
             Controller.House.Hand.Add(Controller.GDeck.Draw());
+            Controller.GameWindow.dealer.Content += Controller.House.Hand[0].Print() + " ";
             Controller.House.Hand.Add(Controller.GDeck.Draw());
+            Controller.GameWindow.dealer.Content += Controller.House.Hand[1].Print() + " ";
 
 
 
@@ -77,7 +80,8 @@ namespace CardGames.UserControls
 
         private void SwitchPlayer()
         {
-
+            Controller.GameWindow.DoubleDown.Visibility = Visibility.Visible;
+            Controller.GameWindow.Split.Visibility = Visibility.Visible;
             BlackJackPlayerDisplay tmp = (BlackJackPlayerDisplay)cplayerdisplay.Children[1];
             cplayerdisplay.Children.RemoveAt(1);
             playerlist.Children.Add(tmp);
@@ -94,23 +98,67 @@ namespace CardGames.UserControls
         }
 
         private void Hit_Click(object sender, RoutedEventArgs e)
-        {
+        {//Check for Bust
+            Controller.GameWindow.DoubleDown.Visibility = Visibility.Hidden;
+            Controller.GameWindow.Split.Visibility = Visibility.Hidden;
+            ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Hand.Add(Controller.GDeck.Draw());
+            ((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).UpdateHands();
+            int AceCount = 0;
+            int HandValue = 0;
+            foreach (Card item in ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Hand)
+            {
+                if(item.FaceValue == Enums.CardValue.ACE)
+                {
+                    ++AceCount;
+                    HandValue += 11;
+                }
 
+                if((int)item.FaceValue > 9)
+                {
+                    HandValue += 10;
+                }
+                else
+                {
+                    HandValue += (int)item.FaceValue;
+                }
+            }
+
+            while (AceCount > 0)
+            {
+                if(HandValue > 21)
+                {
+                    HandValue -= 10;
+                }
+                AceCount--;
+            }
+
+            if(HandValue > 21)
+            {
+                
+
+                ((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).Hand.Content += "BUST";
+
+                SwitchPlayer();
+            }
         }
 
         private void Stand_Click(object sender, RoutedEventArgs e)
         {
-
+            SwitchPlayer();
         }
 
         private void DoubleDown_Click(object sender, RoutedEventArgs e)
-        {
+        {//TODO Do this
 
         }
 
         private void Split_Click(object sender, RoutedEventArgs e)
         {
-
+            BlackJackPlayer player = ((BlackJackPlayer)Controller.Players[CurrentPlayer]);
+            if(player.Hand[0].FaceValue == player.Hand[1].FaceValue)
+            {
+                player.SplitHand.Add(player.Hand[1]);player.Hand.RemoveAt(1);// I won this bet
+            }
         }
     }
 }

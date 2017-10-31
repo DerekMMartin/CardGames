@@ -3,9 +3,99 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CardGames.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             xmlns:local="clr-namespace:CardGames.UserControls">
+    <Grid Height="350" Width="525">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="TopHand" Grid.Column="1"
+               Grid.Row="0"
+               Content="ENEMY HAND"/>
+
+        <Label x:Name="LeftHand" Grid.Column="0"
+               Grid.Row="1"
+               Content="ENEMY HAND"/>
+
+        <Label x:Name="RightHand" Grid.Column="2"
+               Grid.Row="1"
+               Content="ENEMY HAND"/>
+
+        <Label x:Name="BottomHand" Grid.Column="1"
+               Grid.Row="2"
+               Content="PLAYER HAND"/>
+        <Grid x:Name="CenterGrid" Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0" Grid.Row="0">
+                <Label Content="A Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <Label Content="K Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="0">
+                <Label Content="Q Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="0">
+                <Label Content="J Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="4" Grid.Row="0">
+                <Label Content="10 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <Label Content="9 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Label Content="8 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="1">
+                <Label Content="7 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="1">
+                <Label Content="6 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="4" Grid.Row="1">
+                <Label Content="5 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="2">
+                <Label Content="4 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="2">
+                <Label Content="3 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="2">
+                <Label Content="2 Pairs"/>
+                <Label Content="0"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

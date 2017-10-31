@@ -39,8 +39,22 @@ namespace CardGames.UserControls
         }
         public void UpdateHands()
         {
+            bool busted = false;
+            bool SBusted = false;
+            try
+            {
+                busted = Hand.Content.ToString().Substring(Hand.Content.ToString().Length - 4) == "BUST";
+            }
+            catch (Exception) { }
+            try
+            {
+                SBusted = SplitHand.Content.ToString().Substring(SplitHand.Content.ToString().Length - 4) == "BUST";
+            }
+            catch (Exception){}
+            
             Hand.Content = "";
             SplitHand.Content = "";
+            
             foreach (Card c in Player.Hand)
             {
                 Hand.Content += c.Print() + " ";
@@ -48,6 +62,16 @@ namespace CardGames.UserControls
             foreach (Card c in Player.SplitHand)
             {
                 SplitHand.Content += c.Print() + " ";
+            }
+
+            if(busted)
+            {
+                Hand.Content += "BUST";
+            }
+
+            if(SBusted)
+            {
+                SplitHand.Content += "BUST";
             }
         }
     }
