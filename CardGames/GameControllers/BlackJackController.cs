@@ -48,10 +48,5 @@ namespace CardGames.GameControllers
         {
 
         }
-
-        public override void SaveGame()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
