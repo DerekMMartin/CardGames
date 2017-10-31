@@ -30,11 +30,18 @@ namespace CardGames.UserControls
             Game = game;
             Window = window;
             InitializeComponent();
+
+            StartGame();
         }
 
-        private void DrawButton_Click(object sender, RoutedEventArgs e)
+        public void StartGame()
         {
 
         }
+
+
+
+
+
     }
 }

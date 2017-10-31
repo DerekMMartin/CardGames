@@ -15,6 +15,8 @@ namespace CardGames.GameControllers
         public bool IsWon { get; set; }
         public WarPlayer LosingPlayer { get; set; }
         public bool IsWar { get; set; }
+        public string FileExtension { get; protected set; } = "war";
+        public string GameName { get; protected set; } = "War";
 
         public WarController(string player1, string player2)
         {
@@ -96,6 +98,7 @@ namespace CardGames.GameControllers
             Card card = player.Draw();
             if(card == null)
             {
+                //if the player has less than three cards in play and or discarded, they lose
                 if(player.DiscardPile.Count + player.CardsAtRisk.Count + 1 <= 3)
                 {
                     IsWon = true;
