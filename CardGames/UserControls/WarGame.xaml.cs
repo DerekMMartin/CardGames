@@ -37,7 +37,7 @@ namespace CardGames.UserControls
             InitializeComponent();
             Player1Label.Content = player1;
             Player2Label.Content = "Computer";
-            Controller = new WarController();
+            Controller = new WarController(player1, "Computer");
             UpdateLables();
         }
 
@@ -47,7 +47,7 @@ namespace CardGames.UserControls
             InitializeComponent();
             Player1Label.Content = player1;
             Player2Label.Content = player2;
-            Controller = new WarController();
+            Controller = new WarController(player1, player2);
             UpdateLables();
         }
 
@@ -63,18 +63,37 @@ namespace CardGames.UserControls
         private void DrawButton_Click(object sender, RoutedEventArgs e)
         {
             Controller.Draw();
-            string card1 = Controller.Player1.FlippedCard.ToString();
-            string card2 = Controller.Player2.FlippedCard.ToString();
-            Player1Card.Content = card1;
-            Player2Card.Content = card2;
-            UpdateLables();
-            if(Controller.IsWar)
+
+            if (!Controller.IsWon)
             {
-                DrawButton.Content = "War!";
+                string card1 = Controller.Player1.FlippedCard.ToString();
+                string card2 = Controller.Player2.FlippedCard.ToString();
+                Player1Card.Content = card1;
+                Player2Card.Content = card2;
+                UpdateLables();
+                if (Controller.IsWar)
+                {
+                    DrawButton.Content = "War!";
+                    DrawButton.Background = new SolidColorBrush(Colors.Red);
+                }
+                else
+                {
+                    DrawButton.Content = "Draw!";
+                    DrawButton.ClearValue(BackgroundProperty);
+                }
             }
             else
             {
-                DrawButton.Content = "Draw!";
+                DrawButton.IsEnabled = false;
+                Player1Label.Content = "";
+                if(Controller.LosingPlayer == Controller.Player2)
+                {
+                    Player2Label.Content = $"{Controller.Player1.Name} wins!";
+                }
+                else
+                {
+                    Player2Label.Content = $"{Controller.Player2.Name} wins!";
+                }
             }
         }
 

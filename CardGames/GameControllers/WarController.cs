@@ -16,10 +16,12 @@ namespace CardGames.GameControllers
         public WarPlayer LosingPlayer { get; set; }
         public bool IsWar { get; set; }
 
-        public WarController()
+        public WarController(string player1, string player2)
         {
             Player1 = new WarPlayer();
             Player2 = new WarPlayer();
+            Player1.Name = player1;
+            Player2.Name = player2;
             DealCards();
         }
 
@@ -42,8 +44,10 @@ namespace CardGames.GameControllers
 
         public void Draw()
         {
-            Card card1 = DrawPlayerCard(Player1);
-            Card card2 = DrawPlayerCard(Player2);
+            DrawPlayerCard(Player1);
+            DrawPlayerCard(Player2);
+            Card card1 = Player1.FlippedCard;
+            Card card2 = Player2.FlippedCard;
             IsWar = false;
             if (!IsWon)
             {
@@ -108,7 +112,7 @@ namespace CardGames.GameControllers
                     else
                     {
                         IsWon = true;
-                        LosingPlayer = player;
+                    LosingPlayer = player;
                     }
 
                 }
