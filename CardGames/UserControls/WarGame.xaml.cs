@@ -69,7 +69,7 @@ namespace CardGames.UserControls
 
             if (!Controller.IsWon)
             {
-                string card1 = Controller.Player1.FlippedCard.ToString();
+               string card1 = Controller.Player1.FlippedCard.ToString();
                 string card2 = Controller.Player2.FlippedCard.ToString();
                 Player1Card.Content = card1;
                 Player2Card.Content = card2;
@@ -97,6 +97,7 @@ namespace CardGames.UserControls
                 {
                     Player2Label.Content = $"{Controller.Player2.Name} wins!";
                 }
+                UpdateLables();
             }
         }
 

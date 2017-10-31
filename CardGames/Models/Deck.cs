@@ -49,7 +49,7 @@ namespace CardGames.Models
             {
                 drawnCard = Cards.First();
                 Drawn.Add(drawnCard);
-                Cards.RemoveAt(0);
+                Cards.Remove(drawnCard);
                 
             }
             else
@@ -67,15 +67,13 @@ namespace CardGames.Models
 
             ClearDrawnPile();
 
-            int size = Cards.Count();
             Random rand = new Random();
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < 52; i++)
             {
-                
-                int randomNum = rand.Next(Cards.Count);
-                Card card = Cards[randomNum];
+                int randomNum = rand.Next(Cards.Count());
+                Card card = Cards.ElementAt(randomNum);
                 Drawn.Add(card);
-                Cards.RemoveAt(randomNum);
+                Cards.Remove(card);
             }
 
             foreach (Card card in Drawn)
