@@ -61,7 +61,6 @@ namespace CardGames.UserControls
             Player2DrawLabel.Content = Controller.Player2.RemainingCards;
             Player1DiscardLabel.Content = Controller.Player1.NumDiscarded;
             Player2DiscardLabel.Content = Controller.Player2.NumDiscarded;
-            CardsAtRiskLabel.Content = (Controller.Player1.NumAtRisk + Controller.Player2.NumAtRisk);
         }
 
         private void DrawButton_Click(object sender, RoutedEventArgs e)
