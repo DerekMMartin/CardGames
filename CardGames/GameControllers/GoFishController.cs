@@ -50,7 +50,6 @@ namespace CardGames.GameControllers
             //if card == requested card tell other player card face + value and player goes again
 
             //Loop until player gets 4 of a kind
-            
         }
         
         private bool CheckIfPlayerHasCard(GoFishPlayer player, CardValue value)
