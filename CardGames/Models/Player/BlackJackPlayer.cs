@@ -10,6 +10,8 @@ namespace CardGames.Models.Player
 {
     public class BlackJackPlayer : Player,INotifyPropertyChanged
     {
+        public bool FiveCardCharlie = false;
+        public bool hasBustOrStand = false;
         private int bank;
 
         public event PropertyChangedEventHandler PropertyChanged;
