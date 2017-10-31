@@ -14,30 +14,41 @@ namespace CardGames.GameControllers
         public WarPlayer Player2 { get; set; }
         public bool IsWon { get; set; }
         public WarPlayer LosingPlayer { get; set; }
+        public bool IsWar { get; set; }
 
-        public WarController()
+        public WarController(string player1, string player2)
         {
             Player1 = new WarPlayer();
             Player2 = new WarPlayer();
+            Player1.Name = player1;
+            Player2.Name = player2;
             DealCards();
         }
 
         public void DealCards()
         {
             Deck deck = new Deck();
-            for (int i = 0; i < deck.Cards.Count();  i += 2)
+            int size = deck.Cards.Count;
+            for (int i = 0; i < size; i += 2)
             {
                 Player1.DrawPile.Add(deck.Draw());
                 Player2.DrawPile.Add(deck.Draw());
             }
             Player1.Shuffle();
             Player2.Shuffle();
+            Player1.RemainingCards = Player1.DrawPile.Count();
+            Player1.NumDiscarded = Player1.DiscardPile.Count();
+            Player2.RemainingCards = Player2.DrawPile.Count();
+            Player2.NumDiscarded = Player2.DiscardPile.Count();
         }
 
         public void Draw()
         {
-            Card card1 = DrawPlayerCard(Player1);
-            Card card2 = DrawPlayerCard(Player2);
+            DrawPlayerCard(Player1);
+            DrawPlayerCard(Player2);
+            Card card1 = Player1.FlippedCard;
+            Card card2 = Player2.FlippedCard;
+            IsWar = false;
             if (!IsWon)
             {
                 CheckCards(card1, card2);
@@ -49,7 +60,9 @@ namespace CardGames.GameControllers
         {
             if (card1.FaceValue == card2.FaceValue)
             {
-                CheckCards(Player1.War(), Player2.War());
+                Player1.War();
+                Player2.War();
+                IsWar = true;
             }
             else if ((int)card1.FaceValue > (int)card2.FaceValue || (int)card1.FaceValue == 1)
             {
@@ -83,10 +96,25 @@ namespace CardGames.GameControllers
             Card card = player.Draw();
             if(card == null)
             {
-                if(player.DiscardPile.Count() <= 3)
+                if(player.DiscardPile.Count + player.CardsAtRisk.Count + 1 <= 3)
                 {
                     IsWon = true;
                     LosingPlayer = player;
+                }
+                else if(IsWar)
+                {
+                    //if there are any remaining cards besides the previous flipped
+                    if(player.CardsAtRisk.Count != 1)
+                    {
+                        player.FlippedCard = player.CardsAtRisk.Last();
+                        player.CardsAtRisk.Remove(player.FlippedCard);
+                    }
+                    else
+                    {
+                        IsWon = true;
+                    LosingPlayer = player;
+                    }
+
                 }
                 else
                 {

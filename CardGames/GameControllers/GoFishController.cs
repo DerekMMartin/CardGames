@@ -17,6 +17,8 @@ namespace CardGames.GameControllers
 
             Players = new List<Player>();
 
+            FileExtension = "GoF";
+
             for (int i = 0; i < numOfPlayers; i++)
             {
                 GoFishPlayer p = new GoFishPlayer();
@@ -48,7 +50,6 @@ namespace CardGames.GameControllers
             //if card == requested card tell other player card face + value and player goes again
 
             //Loop until player gets 4 of a kind
-            
         }
         
         private bool CheckIfPlayerHasCard(GoFishPlayer player, CardValue value)

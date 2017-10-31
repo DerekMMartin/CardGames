@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:CardGames.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
