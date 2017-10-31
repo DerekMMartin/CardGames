@@ -13,6 +13,7 @@ namespace CardGames.GameControllers
     {
         public GoFishController(int numOfPlayers, List<string> playerNames)
         {
+            
             GDeck = new Deck();
 
             Players = new List<Player>();

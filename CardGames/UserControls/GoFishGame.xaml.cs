@@ -30,6 +30,18 @@ namespace CardGames.UserControls
             Game = game;
             Window = window;
             InitializeComponent();
+
+            StartGame();
         }
+
+        public void StartGame()
+        {
+
+        }
+
+
+
+
+
     }
 }
