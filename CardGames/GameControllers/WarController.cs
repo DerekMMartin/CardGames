@@ -26,7 +26,8 @@ namespace CardGames.GameControllers
         public void DealCards()
         {
             Deck deck = new Deck();
-            for (int i = 0; i < deck.Cards.Count();)
+            int size = deck.Cards.Count;
+            for (int i = 0; i < size; i += 2)
             {
                 Player1.DrawPile.Add(deck.Draw());
                 Player2.DrawPile.Add(deck.Draw());
@@ -55,6 +56,8 @@ namespace CardGames.GameControllers
         {
             if (card1.FaceValue == card2.FaceValue)
             {
+                Player1.War();
+                Player2.War();
                 IsWar = true;
             }
             else if ((int)card1.FaceValue > (int)card2.FaceValue || (int)card1.FaceValue == 1)
@@ -89,10 +92,25 @@ namespace CardGames.GameControllers
             Card card = player.Draw();
             if(card == null)
             {
-                if(player.DiscardPile.Count() <= 3)
+                if(player.DiscardPile.Count + player.CardsAtRisk.Count + 1 <= 3)
                 {
                     IsWon = true;
                     LosingPlayer = player;
+                }
+                else if(IsWar)
+                {
+                    //if there are any remaining cards besides the previous flipped
+                    if(player.CardsAtRisk.Count != 1)
+                    {
+                        player.FlippedCard = player.CardsAtRisk.Last();
+                        player.CardsAtRisk.Remove(player.FlippedCard);
+                    }
+                    else
+                    {
+                        IsWon = true;
+                        LosingPlayer = player;
+                    }
+
                 }
                 else
                 {

@@ -63,11 +63,19 @@ namespace CardGames.UserControls
         private void DrawButton_Click(object sender, RoutedEventArgs e)
         {
             Controller.Draw();
-            string card1 = Controller.Player1.FlippedCard.FaceValue.ToString() + Controller.Player1.FlippedCard.FaceSuit.ToString();
-            string card2 = Controller.Player2.FlippedCard.FaceValue.ToString() + Controller.Player2.FlippedCard.FaceSuit.ToString();
+            string card1 = Controller.Player1.FlippedCard.ToString();
+            string card2 = Controller.Player2.FlippedCard.ToString();
             Player1Card.Content = card1;
             Player2Card.Content = card2;
             UpdateLables();
+            if(Controller.IsWar)
+            {
+                DrawButton.Content = "War!";
+            }
+            else
+            {
+                DrawButton.Content = "Draw!";
+            }
         }
 
     }

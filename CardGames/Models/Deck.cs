@@ -67,9 +67,10 @@ namespace CardGames.Models
             ClearDrawnPile();
 
             int size = Cards.Count();
+            Random rand = new Random();
             for (int i = 0; i < size; i++)
             {
-                Random rand = new Random();
+                
                 int randomNum = rand.Next(Cards.Count);
                 Card card = Cards[randomNum];
                 Drawn.Add(card);
