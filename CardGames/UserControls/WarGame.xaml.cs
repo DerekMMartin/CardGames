@@ -97,5 +97,9 @@ namespace CardGames.UserControls
             }
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Controller.SaveGame();
+        }
     }
 }

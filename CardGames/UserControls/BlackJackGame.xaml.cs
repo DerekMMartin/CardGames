@@ -38,11 +38,46 @@ namespace CardGames.UserControls
         {
             ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bet = int.Parse(((Button)sender).Content.ToString().Substring(1));
             //If Last person Make bet invis, make other visable
+            ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bank -= ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bet;
+
+            if (CurrentPlayer == Controller.Players.Count-1)
+            {
+                StartHand();
+            }
             SwitchPlayer();
+        }
+
+        private void StartHand()
+        {//TODO Make cards face down on first deal not the second one.
+            betsgrid.Visibility = Visibility.Hidden;
+            actiongrid.Visibility = Visibility.Visible;
+            Controller.GDeck.Shuffle();
+            foreach (Player item in Controller.Players)
+            {
+                item.Hand.Add(Controller.GDeck.Draw());
+                item.Hand.Add(Controller.GDeck.Draw());
+            }
+            Controller.House.Hand.Add(Controller.GDeck.Draw());
+            Controller.House.Hand.Add(Controller.GDeck.Draw());
+
+
+
+            GameUpdateHands();
+        }
+
+        private void GameUpdateHands()
+        {
+            foreach (BlackJackPlayerDisplay item in Controller.GameWindow.playerlist.Children)
+            {
+                item.UpdateHands();
+            }
+            ((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).UpdateHands();
+
         }
 
         private void SwitchPlayer()
         {
+
             BlackJackPlayerDisplay tmp = (BlackJackPlayerDisplay)cplayerdisplay.Children[1];
             cplayerdisplay.Children.RemoveAt(1);
             playerlist.Children.Add(tmp);
@@ -55,6 +90,7 @@ namespace CardGames.UserControls
             cplayerbet.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bet;
             cplayername.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Name;
             bank.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bank;
+            GameUpdateHands();
         }
 
         private void Hit_Click(object sender, RoutedEventArgs e)

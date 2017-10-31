@@ -46,6 +46,7 @@ namespace CardGames.UserControls
                 StackPanel s = new StackPanel();
                 s.Background = Brushes.AliceBlue;
                 s.Orientation = Orientation.Horizontal;
+                s.Margin = new Thickness(20, 0, 20, 0);
                 Label l = new Label();
                 TextBox t = new TextBox();
                 t.Width = 100;
@@ -54,6 +55,8 @@ namespace CardGames.UserControls
                 s.Children.Add(l);
                 s.Children.Add(t);
                 PlayerNameArea.Children.Add(s);
+
+                
             }
 
             //Button b = new Button();

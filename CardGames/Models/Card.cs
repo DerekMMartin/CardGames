@@ -30,7 +30,7 @@ namespace CardGames.Models
         }
         public string Print()
         {
-            return FaceValue + " " + FaceSuit.ToString().Substring(0, 1);
+            return (int)FaceValue  + "" + FaceSuit.ToString().Substring(0, 1);
         }
     }
 }

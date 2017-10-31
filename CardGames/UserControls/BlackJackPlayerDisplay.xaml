@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CardGames.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
-    <Viewbox>
+
 
         <Grid Background="AliceBlue" MinWidth="80">
             <Grid.RowDefinitions>
@@ -23,5 +23,4 @@
                 <Label x:Name="splitHand"></Label>
             </StackPanel>
         </Grid>
-    </Viewbox>
 </UserControl>

@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace CardGames.GameControllers
 {
-    public class WarController
+    public class WarController : Game
     {
         public WarPlayer Player1 { get; set; }
         public WarPlayer Player2 { get; set; }
         public bool IsWon { get; set; }
         public WarPlayer LosingPlayer { get; set; }
         public bool IsWar { get; set; }
-        public string FileExtension { get; protected set; } = "war";
-        public string GameName { get; protected set; } = "War";
 
         public WarController(string player1, string player2)
         {
@@ -24,6 +22,8 @@ namespace CardGames.GameControllers
             Player2 = new WarPlayer();
             Player1.Name = player1;
             Player2.Name = player2;
+            FileExtension = "war";
+            GameName = "War";
             DealCards();
         }
 
