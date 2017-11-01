@@ -170,8 +170,10 @@ namespace CardGames.UserControls
 
         private void DealerPlay()
         {
+            //dont do this
             Controller.GameWindow.Hit.Visibility = Visibility.Hidden;
             Controller.GameWindow.Stand.Visibility = Visibility.Hidden;
+            //
             while (GetHandValue(Controller.House.Hand) <= 16)
             {
                 Controller.House.Hand.Add(Controller.GDeck.Draw());
