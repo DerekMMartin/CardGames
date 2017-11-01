@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.Enums
 {
+    [Serializable]
     public enum Suit
     {
         SPADES,

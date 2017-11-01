@@ -1,4 +1,5 @@
-﻿using CardGames.Models;
+﻿using CardGames.Enums;
+using CardGames.Models;
 using CardGames.Models.Player;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.GameControllers
 {
+    [Serializable]
     public class WarController : Game
     {
         public WarPlayer Player1 { get; set; }
@@ -30,11 +32,11 @@ namespace CardGames.GameControllers
         public void DealCards()
         {
             Deck deck = new Deck();
-            int size = deck.Cards.Count;
-            for (int i = 0; i < size; i += 2)
+            for (int i = 0; i < 26; i++)
             {
-                Player1.DrawPile.Add(deck.Draw());
                 Player2.DrawPile.Add(deck.Draw());
+                Player1.DrawPile.Add(deck.Draw());
+                
             }
             Player1.Shuffle();
             Player2.Shuffle();
@@ -66,7 +68,7 @@ namespace CardGames.GameControllers
                 Player2.War();
                 IsWar = true;
             }
-            else if ((int)card1.FaceValue > (int)card2.FaceValue || (int)card1.FaceValue == 1)
+            else if (((int)card1.FaceValue > (int)card2.FaceValue && card2.FaceValue != CardValue.ACE )|| (int)card1.FaceValue == 1)
             {
                 ClearBoard(Player1);
             }
@@ -99,7 +101,7 @@ namespace CardGames.GameControllers
             if(card == null)
             {
                 //if the player has less than three cards in play and or discarded, they lose
-                if(player.DiscardPile.Count + player.CardsAtRisk.Count + 1 <= 3)
+                if(player.DiscardPile.Count + player.CardsAtRisk.Count() + 1 <= 3)
                 {
                     IsWon = true;
                     LosingPlayer = player;
@@ -107,7 +109,7 @@ namespace CardGames.GameControllers
                 else if(IsWar)
                 {
                     //if there are any remaining cards besides the previous flipped
-                    if(player.CardsAtRisk.Count != 1)
+                    if(player.CardsAtRisk.Count() != 1 || player.CardsAtRisk.Count()%4 != 0)
                     {
                         player.FlippedCard = player.CardsAtRisk.Last();
                         player.CardsAtRisk.Remove(player.FlippedCard);

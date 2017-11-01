@@ -22,32 +22,36 @@ namespace CardGames.UserControls
     /// </summary>
     public partial class WarGame : UserControl
     {
-
-        public bool IsPvP { get; set; }
         public WarController Controller { get; set; }
+        public MainWindow Window { get; set; }
 
-        public WarGame()
+        public WarGame(String player1, MainWindow window)
         {
-            InitializeComponent();
-        }
-
-        public WarGame(String player1)
-        {
-            IsPvP = false;
             InitializeComponent();
             Player1Label.Content = player1;
             Player2Label.Content = "Computer";
             Controller = new WarController(player1, "Computer");
+            Window = window;
             UpdateLables();
         }
 
-        public WarGame(String player1, String player2)
+        public WarGame(String player1, String player2, MainWindow window)
         {
-            IsPvP = true;
             InitializeComponent();
             Player1Label.Content = player1;
             Player2Label.Content = player2;
             Controller = new WarController(player1, player2);
+            Window = window;
+            UpdateLables();
+        }
+
+        public WarGame(WarController loaded, MainWindow window)
+        {
+            Controller = loaded;
+            InitializeComponent();
+            Player1Label.Content = loaded.Player1.Name;
+            Player2Label.Content = loaded.Player2.Name;
+            Window = window;
             UpdateLables();
         }
 
@@ -57,7 +61,6 @@ namespace CardGames.UserControls
             Player2DrawLabel.Content = Controller.Player2.RemainingCards;
             Player1DiscardLabel.Content = Controller.Player1.NumDiscarded;
             Player2DiscardLabel.Content = Controller.Player2.NumDiscarded;
-            CardsAtRiskLabel.Content = (Controller.Player1.NumAtRisk + Controller.Player2.NumAtRisk);
         }
 
         private void DrawButton_Click(object sender, RoutedEventArgs e)
@@ -66,7 +69,7 @@ namespace CardGames.UserControls
 
             if (!Controller.IsWon)
             {
-                string card1 = Controller.Player1.FlippedCard.ToString();
+               string card1 = Controller.Player1.FlippedCard.ToString();
                 string card2 = Controller.Player2.FlippedCard.ToString();
                 Player1Card.Content = card1;
                 Player2Card.Content = card2;
@@ -94,12 +97,22 @@ namespace CardGames.UserControls
                 {
                     Player2Label.Content = $"{Controller.Player2.Name} wins!";
                 }
+                UpdateLables();
             }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Controller.SaveGame();
+            if (!Controller.IsWon)
+            {
+                Controller.SaveGame();
+            }
+        }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Window.Root.Children.Clear();
+            Window.Root.Children.Add(new MenuUC(Window));
         }
     }
 }

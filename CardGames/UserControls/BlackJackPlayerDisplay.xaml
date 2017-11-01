@@ -19,8 +19,8 @@
                 <Label x:Name="bank" FontSize="10" Padding="0 5 4 0">20</Label>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Label x:Name="hand"></Label>
-                <Label x:Name="splitHand"></Label>
+                <Label x:Name="hand" Content=""></Label>
+                <Label x:Name="splitHand" Content=""></Label>
             </StackPanel>
         </Grid>
 </UserControl>

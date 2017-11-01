@@ -5,81 +5,131 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CardGames.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="315" d:DesignWidth="300">
+             d:DesignHeight="315" d:DesignWidth="525">
     <StackPanel>
         <Menu>
             <MenuItem Header="File">
-                <MenuItem Header="Save" Click="MenuItem_Click"></MenuItem>
+                <MenuItem Header="Save" Click="MenuItem_Click"/>
+                <MenuItem Header="Return to Menu" Click="Return_Click"/>
             </MenuItem>
         </Menu>
-    <Grid Background="AliceBlue"
+    <Grid Background="#355E3B"
           Height="300">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Grid Height="100"
-              Grid.Row="1">
-
-            <Label Name="Player2Card"
-                   HorizontalContentAlignment="Center"/>
-
-        </Grid>
-        <Grid Height="100"
-              Grid.Row="3">
-            
-            <Label Name="Player1Card"
-                   HorizontalContentAlignment="Center"/>
-
-        </Grid>
-        <Button Name="DrawButton"
-                Content="Draw!"
-                Click="DrawButton_Click"
-                Grid.Row="2"
-                Width="100"/>
-        <Label Name="CardsAtRiskLabel"
-               Grid.Row="2"
-               VerticalAlignment="Center"
-               HorizontalContentAlignment="Center"
-               FontSize="24"
-               Width="50"
-                HorizontalAlignment="Right"/>
-        <Label Name="Player2Label"
+            <Label Name="Player2Label"
                Content="Player 2 Label"
                Grid.Row="0"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
-               FontSize="24"/>
-        <Label Name="Player2DrawLabel"
-               Grid.Row="1"
-               VerticalAlignment="Center"
-               HorizontalContentAlignment="Left"
-               FontSize="24"/>
-        <Label Name="Player2DiscardLabel"
-               Grid.Row="1"
-               VerticalAlignment="Center"
-               HorizontalContentAlignment="Right"
-               FontSize="24"/>
-        <Label Name="Player1Label"
+               FontSize="24"
+               Foreground="White"/>
+
+            <Label Name="Player1Label"
                Content="Player 1 Label"
-               Grid.Row="4"
+               Grid.Row="2"
                VerticalContentAlignment="Center"
                HorizontalContentAlignment="Center"
-               FontSize="24"/>
-        <Label Name="Player1DrawLabel"
-               Grid.Row="3"
+               FontSize="24"
+               Foreground="White"/>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+            <Label Name="Player2Card"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   HorizontalContentAlignment="Center"
+                   Foreground="White"
+                   VerticalContentAlignment="Center"/>
+
+            
+            <Label Name="Player1Card"
+                   HorizontalContentAlignment="Center"
+                   Foreground="White"
+                   VerticalContentAlignment="Center"
+                   Grid.Row="2"
+                   Grid.Column="2"/>
+
+                <Button Name="DrawButton"
+                Content="Draw!"
+                Click="DrawButton_Click"
+                Grid.Row="1"
+                Grid.Column="2"
+                Width="100"/>
+
+                <Label Name="Player2DrawLabel"
+               Grid.Row="0"
+               Grid.Column="0"
                VerticalAlignment="Center"
-               HorizontalContentAlignment="Left"
-               FontSize="24"/>
-        <Label Name="Player1DiscardLabel"
-               Grid.Row="3"
+               HorizontalContentAlignment="Center"
+               FontSize="24"
+               Foreground="White"/>
+            <Label Name="Player2DrawDescriptorLabel"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   Content="Deck"
+                   HorizontalAlignment="Left"/>
+            <Label Name="Player2DiscardLabel"
+               Grid.Row="0"
+               Grid.Column="4"
                VerticalAlignment="Center"
-               HorizontalContentAlignment="Right"
-               FontSize="24"/>
-    </Grid>
+               HorizontalContentAlignment="Center"
+               FontSize="24"
+               Foreground="White"/>
+            <Label Name="Player2DiscardDescriptorLabel"
+                   Grid.Row="0"
+                   Grid.Column="3"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   Content="Discard"
+                   HorizontalAlignment="Right"/>
+
+            <Label Name="Player1DrawDescriptorLabel"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   Content="Deck"
+                   HorizontalAlignment="Left"/>
+            <Label Name="Player1DrawLabel"
+               Grid.Row="2"
+               VerticalAlignment="Center"
+               HorizontalContentAlignment="Center"
+               FontSize="24"
+               Foreground="White"/>
+            <Label Name="Player1DiscardLabel"
+               Grid.Row="2"
+                   Grid.Column="4"
+               VerticalAlignment="Center"
+               HorizontalContentAlignment="Center"
+               FontSize="24"
+               Foreground="White"/>
+            <Label Name="Player1DiscardDescriptorLabel"
+                   Grid.Row="2"
+                   Grid.Column="3"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   Content="Discard"
+                   HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
     </StackPanel>
 </UserControl>

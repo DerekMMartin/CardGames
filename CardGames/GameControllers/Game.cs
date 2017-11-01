@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace CardGames.GameControllers
 {
+    [Serializable]
     public abstract class Game
     {
         public List<Player> Players { get; set; }
@@ -29,10 +30,7 @@ namespace CardGames.GameControllers
             {
                 FileStream fs = (FileStream)sfd.OpenFile();
                 BinaryFormatter bf = new BinaryFormatter();
-                using (FileStream f = File.Create(sfd.FileName))
-                {
-                    bf.Serialize(f, this);
-                }
+                bf.Serialize(fs, this);
             }
         }
     }

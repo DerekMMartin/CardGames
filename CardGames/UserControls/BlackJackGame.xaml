@@ -46,7 +46,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label>Current Bet:</Label>
-                    <Label x:Name="cplayerbet" MinWidth="25">10</Label>
+                    <Label x:Name="cplayerbet" MinWidth="25">0</Label>
                 </StackPanel>
             </StackPanel>
             <StackPanel x:Name="betsgrid" Grid.Column="1" Visibility="Visible">

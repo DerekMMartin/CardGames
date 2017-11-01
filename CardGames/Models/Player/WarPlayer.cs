@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardGames.Models.Player
 {
+    [Serializable]
     public class WarPlayer : Player
     {
 
@@ -91,7 +92,7 @@ namespace CardGames.Models.Player
             int size = DiscardPile.Count;
             for (int i = 0; i < size; i++)
             {
-                int selection = rand.Next(DiscardPile.Count);
+                int selection = rand.Next(DiscardPile.Count());
                 DrawPile.Add(DiscardPile[selection]);
                 DiscardPile.RemoveAt(selection);
             }
