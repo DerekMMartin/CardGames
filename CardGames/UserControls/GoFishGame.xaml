@@ -16,17 +16,23 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="TopHand" Grid.Column="1"
+        <Button x:Name="TopHand" Grid.Column="1"
                Grid.Row="0"
-               Content="ENEMY HAND"/>
+               Content="ENEMY HAND"
+               Click="TopHand_Click"
+                Visibility="Hidden"/>
 
-        <Label x:Name="LeftHand" Grid.Column="0"
+        <Button x:Name="LeftHand" Grid.Column="0"
                Grid.Row="1"
-               Content="ENEMY HAND"/>
+               Content="ENEMY HAND"
+               Click="LeftHand_Click"
+                Visibility="Hidden"/>
 
-        <Label x:Name="RightHand" Grid.Column="2"
+        <Button x:Name="RightHand" Grid.Column="2"
                Grid.Row="1"
-               Content="ENEMY HAND"/>
+               Content="ENEMY HAND"
+               Click="RightHand_Click"
+                Visibility="Hidden"/>
 
         <Label x:Name="BottomHand" Grid.Column="1"
                Grid.Row="2"
