@@ -36,7 +36,7 @@ namespace CardGames.UserControls
 
         public void StartGame()
         {
-
+            //Maybe loop for pairs, found pair remove found pair remove
         }
 
 

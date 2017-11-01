@@ -68,17 +68,50 @@ namespace CardGames.GameControllers
 
             return requestedCards;
         }
-
-        public bool ValidatePair(List<Card> handOfCards)
+        
+        /// <summary>
+        /// Finds a pair of cards in a hand and returns a list of each pairs 
+        /// </summary>
+        /// <param name="handOfCards">Player hand being checked for pairs</param>
+        /// <returns></returns>
+        public List<List<Card>> FindPair(List<Card> handOfCards)
         {
-            bool validPair = false;
-
-            foreach (Card c in handOfCards)
+            List<Card> returnPair = new List<Card>();
+            
+            foreach (Card Card1 in handOfCards)
             {
-                //handOfCards.Where(c)
+                foreach (Card Card2 in handOfCards)
+                {
+                    if (Card1.FaceValue == Card2.FaceValue)
+                    {
+                        returnPair.Add(Card1);
+                        returnPair.Add(Card2);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public List<Card> RemoveCardsFromHand(List<Card> cardsToRemove, List<Card> hand)
+        {
+            List<Card> newHand = new List<Card>();
+
+            foreach (Card removeCard in cardsToRemove)
+            {
+                foreach (Card c in hand)
+                {
+                    if (removeCard.FaceSuit == c.FaceSuit && removeCard.FaceValue == c.FaceValue)
+                    {
+
+                    } else
+                    {
+                        newHand.Add(c);
+                    }
+                }
             }
             
-            return validPair;
+            return newHand;
         }
 
         /// <summary>
