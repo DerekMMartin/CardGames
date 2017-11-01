@@ -43,9 +43,10 @@ namespace CardGames.UserControls
             //If Last person Make bet invis, make other visable
             ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bank -= ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bet;
 
-            if (CurrentPlayer == Controller.Players.Count-1)
+            if (CurrentPlayer == Controller.Players.Count - 1)
             {
                 InBetting = false;
+                Controller.GameWindow.dealer.Content = "";
                 StartHand();
             }
             SwitchPlayer();
@@ -83,26 +84,24 @@ namespace CardGames.UserControls
 
         private void SwitchPlayer()
         {
-            if ( !InBetting && CurrentPlayer == Controller.Players.Count - 1 && ((BlackJackPlayer)Controller.Players[CurrentPlayer]).hasBustOrStand)
+
+            Controller.GameWindow.DoubleDown.Visibility = Visibility.Visible;
+            Controller.GameWindow.Split.Visibility = Visibility.Visible;
+            BlackJackPlayerDisplay tmp = (BlackJackPlayerDisplay)cplayerdisplay.Children[1];
+            cplayerdisplay.Children.RemoveAt(1);
+            playerlist.Children.Add(tmp);
+
+            tmp = playerlist.Children[0] as BlackJackPlayerDisplay;
+            playerlist.Children.RemoveAt(0);
+            cplayerdisplay.Children.Add(tmp);
+            CurrentPlayer = CurrentPlayer + 1 == Controller.Players.Count ? 0 : CurrentPlayer + 1;
+            cplayerbet.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bet;
+            cplayername.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Name;
+            bank.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bank;
+            GameUpdateHands();
+            if (!InBetting && CurrentPlayer == 0 && ((BlackJackPlayer)Controller.Players[CurrentPlayer]).hasBustOrStand)
             {
                 DealerPlay();
-            }
-            else
-            {
-                Controller.GameWindow.DoubleDown.Visibility = Visibility.Visible;
-                Controller.GameWindow.Split.Visibility = Visibility.Visible;
-                BlackJackPlayerDisplay tmp = (BlackJackPlayerDisplay)cplayerdisplay.Children[1];
-                cplayerdisplay.Children.RemoveAt(1);
-                playerlist.Children.Add(tmp);
-
-                tmp = playerlist.Children[0] as BlackJackPlayerDisplay;
-                playerlist.Children.RemoveAt(0);
-                cplayerdisplay.Children.Add(tmp);
-                CurrentPlayer = CurrentPlayer  + 1 == Controller.Players.Count ? 0 : CurrentPlayer + 1;
-                cplayerbet.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bet;
-                cplayername.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Name;
-                bank.Content = ((BlackJackPlayer)Controller.Players[CurrentPlayer]).Bank;
-                GameUpdateHands();
             }
         }
 
@@ -114,17 +113,21 @@ namespace CardGames.UserControls
             player.Hand.Add(Controller.GDeck.Draw());
             ((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).UpdateHands();
             int HandValue = GetHandValue(player.Hand);
-           
-            if(HandValue > 21)
+
+            if (HandValue > 21)
             {
-                player.FiveCardCharlie = player.Hand.Count > 4;
                 player.hasBustOrStand = true;
                 ((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).Hand.Content += "BUST";
                 SwitchPlayer();
             }
+            if (player.Hand.Count == 5)
+            {
+                player.FiveCardCharlie = player.Hand.Count > 4;
+                SwitchPlayer();
+            }
         }
 
-        
+
 
         private void Stand_Click(object sender, RoutedEventArgs e)
         {
@@ -169,19 +172,53 @@ namespace CardGames.UserControls
         {
             Controller.GameWindow.Hit.Visibility = Visibility.Hidden;
             Controller.GameWindow.Stand.Visibility = Visibility.Hidden;
-            int HandValue = 0;
-            do
+            while (GetHandValue(Controller.House.Hand) <= 16)
             {
-                HandValue = GetHandValue(Controller.House.Hand);
                 Controller.House.Hand.Add(Controller.GDeck.Draw());
-                Controller.GameWindow.dealer.Content += Controller.House.Hand[Controller.House.Hand.Count-1].Print() + " ";
-            } while (HandValue < 16);  
+                Controller.GameWindow.dealer.Content += Controller.House.Hand[Controller.House.Hand.Count - 1].Print() + " ";
+            } 
             GivePayouts();
         }
 
         private void GivePayouts()
         {
-            MessageBox.Show("Payouts");
+            foreach (Player p in Controller.Players)
+            {
+                BlackJackPlayer player = (BlackJackPlayer)p;
+                if (GetHandValue(Controller.House.Hand) > 21)
+                {
+                    if (((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).Hand.Content.ToString().Substring(((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).Hand.Content.ToString().Length - 4) != "BUST")
+                    {
+                        player.Bank += player.Bet * 2;
+                    }
+                }
+                else
+                if (GetHandValue(player.Hand) > GetHandValue(Controller.House.Hand))
+                {
+                    player.Bank += player.Bet * 2;
+                }
+                ResetPlayerState((BlackJackPlayer)p);
+            }
+            Controller.House.Hand = new List<Card>();
+
+            foreach (BlackJackPlayerDisplay item in Controller.GameWindow.playerlist.Children)
+            {
+                item.Hand.Content="";
+                item.SplitHand.Content = "";
+            }
+            ((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).Hand.Content = "";
+            ((BlackJackPlayerDisplay)Controller.GameWindow.cplayerdisplay.Children[1]).SplitHand.Content = "";
+            Controller.GDeck.Shuffle();
+            Controller.GameWindow.actiongrid.Visibility = Visibility.Hidden;
+            Controller.GameWindow.betsgrid.Visibility = Visibility.Visible;
+        }
+
+        private void ResetPlayerState(BlackJackPlayer p)
+        {
+            p.Hand = new List<Card>();
+            p.hasBustOrStand = false;
+            p.FiveCardCharlie = false;
+            p.Bet = 0;
         }
 
         private void DoubleDown_Click(object sender, RoutedEventArgs e)
@@ -192,9 +229,9 @@ namespace CardGames.UserControls
         private void Split_Click(object sender, RoutedEventArgs e)
         {
             BlackJackPlayer player = ((BlackJackPlayer)Controller.Players[CurrentPlayer]);
-            if(player.Hand[0].FaceValue == player.Hand[1].FaceValue)
+            if (player.Hand[0].FaceValue == player.Hand[1].FaceValue)
             {
-                player.SplitHand.Add(player.Hand[1]);player.Hand.RemoveAt(1);// I won this bet
+                player.SplitHand.Add(player.Hand[1]); player.Hand.RemoveAt(1);// I won this bet
             }
         }
     }
